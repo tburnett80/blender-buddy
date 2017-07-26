@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using core.bb.Managers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using core.bb.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace core.bb.tests.ManagerTests
 {
@@ -24,6 +20,7 @@ namespace core.bb.tests.ManagerTests
 
             //Assert
             Assert.IsNotNull(result, "Should return an object");
+            Assert.IsInstanceOfType(result, typeof(CalculationResult), "Should be instance of this class");
         }
     }
 }
