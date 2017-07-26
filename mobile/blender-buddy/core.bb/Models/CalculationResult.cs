@@ -11,6 +11,12 @@ namespace core.bb.Models
 
         public MeasureMode System { get; set; }
 
+        public decimal MaxDepth { get; set; }
+
+        public decimal Po214Depth { get; set; }
+
+        public decimal Po216Depth { get; set; }
+
         public TankInfo FillSpecs { get; set; }
 
         public IEnumerable<string> Warnings { get; set; }

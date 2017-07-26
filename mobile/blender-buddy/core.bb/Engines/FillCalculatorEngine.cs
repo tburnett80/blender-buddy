@@ -16,29 +16,49 @@ namespace core.bb.Engines
             return await Task.Run(() =>
             {
                 var warnings = new List<string>();
-                var fill = new CalculationResult
-                {
-                    System = request.System
-                };
-
                 if (request.FillSpecs.HeliumPercent == 0m)
                 {
                     if (request.FillSpecs.OxegynPercent > 40m)
                         warnings.Add("Oxygen compatability required for this blend");
 
-                    fill.FillSpecs = NitroxNoResidual(request);
+                    return NitroxNoResidual(request);
                 }
-                    
-                return fill;
+
+                return new CalculationResult();
             });
         }
 
-        private TankInfo NitroxNoResidual(CalculationRequest desiredFillSpecs)
+        private CalculationResult NitroxNoResidual(CalculationRequest desiredFillSpecs)
         {
-            return new TankInfo
+            var warnings = new List<string>();
+            if (desiredFillSpecs.FillSpecs.OxegynPercent > 40m)
+                warnings.Add("Oxygen compatability required for this blend");
+
+            var oxygenFill = (desiredFillSpecs.FillSpecs.OxegynPercent / 100 - AirO2Percent) / AirNitrogenPercent * desiredFillSpecs.FillSpecs.Presure;
+            var mod = CalculateMaxDepth(desiredFillSpecs.FillSpecs.OxegynPercent, 1.4m, desiredFillSpecs.System);
+
+            return new CalculationResult
             {
-                OxegynPercent = (desiredFillSpecs.FillSpecs.OxegynPercent / 100 - AirO2Percent) / AirNitrogenPercent * desiredFillSpecs.FillSpecs.Presure
+                System = desiredFillSpecs.System,
+                MaxDepth = mod,
+                Po214Depth = mod,
+                Po216Depth = CalculateMaxDepth(desiredFillSpecs.FillSpecs.OxegynPercent, 1.6m, desiredFillSpecs.System),
+                Warnings = warnings,
+                FillSpecs = new TankInfo
+                {
+                    OxegynPercent = oxygenFill,
+                    NitrogenPercent = desiredFillSpecs.FillSpecs.Presure - oxygenFill
+                }
             };
+        }
+
+        private decimal CalculateMaxDepth(decimal o2, decimal pp, MeasureMode system)
+        {
+            var mod = (pp / (o2 / 100) - 1) * 10;
+            if(system == MeasureMode.Imperial)
+                mod /= (decimal) 0.3048;
+
+            return mod;
         }
     }
 }
