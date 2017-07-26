@@ -5,10 +5,12 @@ namespace core.bb.Models
     {
         public decimal Presure { get; set; }
 
-        public decimal OxegynPercent { get; set; }
+        public decimal Oxegyn { get; set; }
 
-        public decimal NitrogenPercent { get; set; }
+        public decimal Nitrogen { get; set; }
 
-        public decimal HeliumPercent { get; set; }
+        public decimal Helium { get; set; }
+
+        public decimal Air { get; set; }
     }
 }
