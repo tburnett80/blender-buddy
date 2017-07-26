@@ -22,7 +22,7 @@ namespace core.bb.Managers
 
         public async Task<CalculationResult> CalculateFill(CalculationRequest fillParams)
         {
-            return await Task.FromResult(new CalculationResult());
+            return await _calculatorEngine.CalculateFill(fillParams);
         }
     }
 }
