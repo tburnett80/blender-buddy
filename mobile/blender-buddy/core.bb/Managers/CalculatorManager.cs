@@ -1,4 +1,5 @@
-﻿using core.bb.Contracts;
+﻿using System.Threading.Tasks;
+using core.bb.Contracts;
 using core.bb.Contracts.Engines;
 using core.bb.Engines;
 using core.bb.Models;
@@ -19,9 +20,9 @@ namespace core.bb.Managers
             _calculatorEngine = calculatorEngine;
         }
 
-        public CalculationResult CalculateFill(CalculationRequest fillParams)
+        public async Task<CalculationResult> CalculateFill(CalculationRequest fillParams)
         {
-            throw new System.NotImplementedException();
+            return await Task.FromResult(new CalculationResult());
         }
     }
 }
