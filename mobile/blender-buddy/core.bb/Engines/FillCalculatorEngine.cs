@@ -16,41 +16,59 @@ namespace core.bb.Engines
             return await Task.Run(() =>
             {
                 if (request.FillSpecs.Helium == 0m)
-                {
-                    return NitroxNoResidual(request);
-                }
+                    return Nitrox(request);
 
                 return new CalculationResult();
             });
         }
 
-        private CalculationResult NitroxNoResidual(CalculationRequest desiredFillSpecs)
+        private CalculationResult Nitrox(CalculationRequest desiredFillSpecs)
         {
             var warnings = new List<string>();
-            if (desiredFillSpecs.FillSpecs.Oxegyn > 40m)
+            if (desiredFillSpecs.FillSpecs.Oxygen > 40m)
                 warnings.Add("Oxygen compatability required for this blend");
 
-            var oxygenFill = (desiredFillSpecs.FillSpecs.Oxegyn / 100 - AirO2Percent) / AirNitrogenPercent * desiredFillSpecs.FillSpecs.Presure;
-            var mod = CalculateMaxDepth(desiredFillSpecs.FillSpecs.Oxegyn, 1.4m, desiredFillSpecs.System).Round();
+            decimal oxygenFillPercent;
+            decimal tankPressure;
+            if (desiredFillSpecs.Residual != null && desiredFillSpecs.Residual.Oxygen > 0m)
+            {
+                var desiredPercentOfTank = desiredFillSpecs.FillSpecs.Oxygen / 100 * desiredFillSpecs.FillSpecs.Presure;
+                var residualMixOfTank = desiredFillSpecs.Residual.Oxygen / 100 * desiredFillSpecs.Residual.Presure;
+                tankPressure = desiredFillSpecs.FillSpecs.Presure - desiredFillSpecs.Residual.Presure;
+                oxygenFillPercent = (desiredPercentOfTank - residualMixOfTank) / tankPressure;
+            }
+            else
+            {
+                tankPressure = desiredFillSpecs.FillSpecs.Presure;
+                oxygenFillPercent = desiredFillSpecs.FillSpecs.Oxygen.ToPercent();
+            }
+
+            var oxygenFill = CalculateOxegenFillPressure(oxygenFillPercent, tankPressure);
+            var mod = CalculateMaxDepth(desiredFillSpecs.FillSpecs.Oxygen.ToPercent(), 1.4m, desiredFillSpecs.System).Round();
 
             return new CalculationResult
             {
                 System = desiredFillSpecs.System,
                 MaxDepth = mod,
                 Po214Depth = mod,
-                Po216Depth = CalculateMaxDepth(desiredFillSpecs.FillSpecs.Oxegyn, 1.6m, desiredFillSpecs.System).Round(),
+                Po216Depth = CalculateMaxDepth(desiredFillSpecs.FillSpecs.Oxygen.ToPercent(), 1.6m, desiredFillSpecs.System).Round(),
                 Warnings = warnings,
                 FillSpecs = new TankInfo
                 {
-                    Oxegyn = oxygenFill.Round(),
-                    Nitrogen = desiredFillSpecs.FillSpecs.Presure - oxygenFill.Round()
+                    Oxygen = oxygenFill.Round(),
+                    Air = tankPressure - oxygenFill.Round()
                 }
             };
         }
 
-        private decimal CalculateMaxDepth(decimal o2, decimal pp, MeasureMode system)
+        private decimal CalculateOxegenFillPressure(decimal oxygenPercent, decimal tankPressure)
         {
-            var mod = (pp / (o2 / 100) - 1) * 33;
+            return (oxygenPercent - AirO2Percent) / AirNitrogenPercent * tankPressure;
+        }
+
+        private decimal CalculateMaxDepth(decimal o2, decimal o2PartialPreasureLimit, MeasureMode system)
+        {
+            var mod = (o2PartialPreasureLimit / o2 - 1) * 33;
             if (system == MeasureMode.Metric)
                 mod /= (decimal)3.28;
             

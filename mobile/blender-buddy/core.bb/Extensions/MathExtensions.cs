@@ -14,5 +14,10 @@ namespace core.bb.Extensions
         {
             return Math.Round(value, 1);
         }
+
+        public static decimal ToPercent(this decimal value)
+        {
+            return value / 100;
+        }
     }
 }

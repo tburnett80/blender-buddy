@@ -5,7 +5,7 @@ namespace core.bb.Models
     {
         public decimal Presure { get; set; }
 
-        public decimal Oxegyn { get; set; }
+        public decimal Oxygen { get; set; }
 
         public decimal Nitrogen { get; set; }
 

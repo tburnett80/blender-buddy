@@ -6,6 +6,15 @@ namespace core.bb.Models
     {
         public CalculationResult()
         {
+            FillSpecs = new TankInfo
+            {
+                Air = 0m,
+                Helium = 0m,
+                Nitrogen = 0m,
+                Oxygen = 0m,
+                Presure = 0m
+            };
+
             Warnings = new string[0];   
         }
 
