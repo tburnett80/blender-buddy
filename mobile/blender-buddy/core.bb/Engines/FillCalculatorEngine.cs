@@ -18,8 +18,17 @@ namespace core.bb.Engines
                 if (request.FillSpecs.Helium == 0m)
                     return Nitrox(request);
 
+                if(request.FillSpecs.Helium > 0m)
+                    return Trimix(request);
+
                 return new CalculationResult();
             });
+        }
+
+        private CalculationResult Trimix(CalculationRequest desiredFillSpecs)
+        {
+
+            return null;
         }
 
         private CalculationResult Nitrox(CalculationRequest desiredFillSpecs)
