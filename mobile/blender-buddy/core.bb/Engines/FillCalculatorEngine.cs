@@ -15,7 +15,7 @@ namespace core.bb.Engines
         {
             return await Task.Run(() =>
             {
-                if (request.FillSpecs.HeliumPercent == 0m)
+                if (request.FillSpecs.Helium == 0m)
                 {
                     return NitroxNoResidual(request);
                 }
