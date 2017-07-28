@@ -5,26 +5,17 @@ namespace core.bb.Models
     {
         public CalculationRequest()
         {
-            FillSpecs = new TankInfo
-            {
-                Air = 0m,
-                Helium = 0m,
-                Nitrogen = 0m,
-                Oxygen = 0m,
-                Presure = 0m
-            };
-
-            Residual = new TankInfo
-            {
-                Air = 0m,
-                Helium = 0m,
-                Nitrogen = 0m,
-                Oxygen = 0m,
-                Presure = 0m
-            };
+            TopOffGas = new Gas();
+            FillSpecs = new TankInfo();
+            Residual = new TankInfo();
+            TopOffGasType = Models.TopOffGas.Air;
         }
 
         public MeasureMode System { get; set; }
+
+        public TopOffGas TopOffGasType { get; set; }
+
+        public Gas TopOffGas { get; set; }
 
         public TankInfo Residual { get; set; }
 
