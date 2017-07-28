@@ -54,9 +54,6 @@ namespace core.bb.Engines
                 oxygenFillPercent = desiredFillSpecs.FillSpecs.GasBlend.Oxygen.ToPercent();
             }
 
-            //TODO calculate nitrogen based on top off gas,
-            //TODO calculate top off gas oxygen
-
             //Calculate how much Oxygen preasure required to achieve the desired blend
             var oxygenFill = CalculateOxegenFillPressure(oxygenFillPercent, DeterminTopOffOxygen(desiredFillSpecs.TopOffGasType, desiredFillSpecs.TopOffGas), DeterminTopOffNitrogen(desiredFillSpecs.TopOffGasType, desiredFillSpecs.TopOffGas), tankPressure);
             var mod = CalculateMaxDepth(desiredFillSpecs.FillSpecs.GasBlend.Oxygen.ToPercent(), 1.4m, desiredFillSpecs.System).Round();
@@ -68,12 +65,13 @@ namespace core.bb.Engines
                 Po214Depth = mod,
                 Po216Depth = CalculateMaxDepth(desiredFillSpecs.FillSpecs.GasBlend.Oxygen.ToPercent(), 1.6m, desiredFillSpecs.System).Round(),
                 Warnings = warnings,
+                TopOffGas = tankPressure - oxygenFill.Round(),
+                TopOffGasType = desiredFillSpecs.TopOffGasType,
                 FillSpecs = new TankInfo
                 {
                     GasBlend = new Gas
                     {
-                        Oxygen = oxygenFill.Round(),
-                        Air = tankPressure - oxygenFill.Round()
+                        Oxygen = oxygenFill.Round()
                     }
                 }
             };
@@ -84,16 +82,16 @@ namespace core.bb.Engines
             return (oxygenPercent - topOffOxygenPercent) / nitrogenPercent * tankPressure;
         }
 
-        private decimal CalculateNitrogenPercent(TankInfo tank)
-        {
-            if (tank.GasBlend.Air > 0)
-                return AirNitrogenPercent;
+        //private decimal CalculateNitrogenPercent(TankInfo tank)
+        //{
+        //    if (tank.GasBlend.Air > 0)
+        //        return AirNitrogenPercent;
 
-            if(tank.Presure == 0 || tank.Presure < tank.GasBlend.Oxygen + tank.GasBlend.Helium)
-                throw new Exception("Cannot calculate Nitrogen based on available information. Empty tank to continue.");
+        //    if(tank.Presure == 0 || tank.Presure < tank.GasBlend.Oxygen + tank.GasBlend.Helium)
+        //        throw new Exception("Cannot calculate Nitrogen based on available information. Empty tank to continue.");
 
-            return (tank.Presure - (tank.GasBlend.Oxygen + tank.GasBlend.Helium)) / tank.Presure;
-        }
+        //    return (tank.Presure - (tank.GasBlend.Oxygen + tank.GasBlend.Helium)) / tank.Presure;
+        //}
 
         private decimal CalculateMaxDepth(decimal o2, decimal o2PartialPreasureLimit, MeasureMode system)
         {

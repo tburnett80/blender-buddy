@@ -18,7 +18,9 @@ namespace core.bb.Models
 
         public decimal Po216Depth { get; set; }
 
-        public Gas TopOffGas { get; set; }
+        public decimal TopOffGas { get; set; }
+
+        public TopOffGas TopOffGasType { get; set; }
 
         public TankInfo FillSpecs { get; set; }
 

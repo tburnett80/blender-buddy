@@ -34,8 +34,9 @@ namespace core.bb.tests.EngineTests
             Assert.IsNotNull(result, "Should be an object");
             Assert.IsInstanceOfType(result, typeof(CalculationResult));
             Assert.AreEqual(request.System, result.System, "Should match");
+            Assert.AreEqual(request.TopOffGasType, result.TopOffGasType, "Should match");
+            Assert.AreEqual(result.TopOffGas, 2582.3m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.FillSpecs.GasBlend.Oxygen, 417.7m, "Should be equal, matches PADI DSAT Gas mix calculator");
-            Assert.AreEqual(result.FillSpecs.GasBlend.Air, 2582.3m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.FillSpecs.GasBlend.Helium, 0m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.MaxDepth, result.Po214Depth, "Should be equal");
             Assert.AreEqual(result.Po214Depth, 111.4m, "Should be equal, matches PADI DSAT Gas mix calculator");
@@ -63,8 +64,9 @@ namespace core.bb.tests.EngineTests
             Assert.IsNotNull(result, "Should be an object");
             Assert.IsInstanceOfType(result, typeof(CalculationResult));
             Assert.AreEqual(request.System, result.System, "Should match");
+            Assert.AreEqual(request.TopOffGasType, result.TopOffGasType, "Should match");
+            Assert.AreEqual(result.TopOffGas, 171.0m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.FillSpecs.GasBlend.Oxygen, 22.0m, "Should be equal, matches PADI DSAT Gas mix calculator");
-            Assert.AreEqual(result.FillSpecs.GasBlend.Air, 171.0m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.FillSpecs.GasBlend.Helium, 0m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.MaxDepth, result.Po214Depth, "Should be equal");
             Assert.AreEqual(result.Po214Depth, 36.9m, "Should be equal, matches PADI DSAT Gas mix calculator");
@@ -106,8 +108,9 @@ namespace core.bb.tests.EngineTests
             Assert.IsNotNull(result, "Should be an object");
             Assert.IsInstanceOfType(result, typeof(CalculationResult));
             Assert.AreEqual(request.System, result.System, "Should match");
+            Assert.AreEqual(request.TopOffGasType, result.TopOffGasType, "Should match");
+            Assert.AreEqual(result.TopOffGas, 1544.3m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.FillSpecs.GasBlend.Oxygen, 455.7m, "Should be equal, matches PADI DSAT Gas mix calculator");
-            Assert.AreEqual(result.FillSpecs.GasBlend.Air, 1544.3m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.FillSpecs.GasBlend.Helium, 0m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.MaxDepth, result.Po214Depth, "Should be equal");
             Assert.AreEqual(result.Po214Depth, 95.3m, "Should be equal, matches PADI DSAT Gas mix calculator");
@@ -144,12 +147,86 @@ namespace core.bb.tests.EngineTests
             Assert.IsNotNull(result, "Should be an object");
             Assert.IsInstanceOfType(result, typeof(CalculationResult));
             Assert.AreEqual(request.System, result.System, "Should match");
+            Assert.AreEqual(request.TopOffGasType, result.TopOffGasType, "Should match");
+            Assert.AreEqual(result.TopOffGas, 109.8m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.FillSpecs.GasBlend.Oxygen, 19.4m, "Should be equal, matches PADI DSAT Gas mix calculator");
-            Assert.AreEqual(result.FillSpecs.GasBlend.Air, 109.8m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.FillSpecs.GasBlend.Helium, 0m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.MaxDepth, result.Po214Depth, "Should be equal");
             Assert.AreEqual(result.Po214Depth, 31.4m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.Po216Depth, 37.3m, "Should be equal, matches PADI DSAT Gas mix calculator");
+        }
+
+        [TestMethod]
+        public async Task TestFillCalculateNitroxEmptyTank_CustomMixTopOff()
+        {
+            //Arrange
+            var request = new CalculationRequest
+            {
+                System = MeasureMode.Imperial,
+                TopOffGasType = TopOffGas.Custom,
+                TopOffGas = new Gas
+                {
+                    Oxygen = 21m
+                },
+                FillSpecs = new TankInfo
+                {
+                    Presure = 2800m,
+                    GasBlend = new Gas
+                    {
+                        Oxygen = 36m
+                    }
+                }
+            };
+
+            //Act
+            var engine = new FillCalculatorEngine();
+            var result = await engine.CalculateFill(request);
+
+            //Assert
+            Assert.IsNotNull(result, "Should be an object");
+            Assert.IsInstanceOfType(result, typeof(CalculationResult));
+            Assert.AreEqual(request.System, result.System, "Should match");
+            Assert.AreEqual(request.TopOffGasType, result.TopOffGasType, "Should match");
+            Assert.AreEqual(result.TopOffGas, 2268.4m, "Should be equal, matches PADI DSAT Gas mix calculator, rouding is off by .1 due to how C# rounds .35 to .4 insetad of .3");
+            Assert.AreEqual(result.FillSpecs.GasBlend.Oxygen, 531.6m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(result.FillSpecs.GasBlend.Helium, 0m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(result.MaxDepth, result.Po214Depth, "Should be equal");
+            Assert.AreEqual(result.Po214Depth, 95.3m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(result.Po216Depth, 113.7m, "Should be equal, matches PADI DSAT Gas mix calculator");
+
+            //Arrange
+            request = new CalculationRequest
+            {
+                System = MeasureMode.Metric,
+                TopOffGasType = TopOffGas.Custom,
+                TopOffGas = new Gas
+                {
+                    Oxygen = 21m
+                },
+                FillSpecs = new TankInfo
+                {
+                    Presure = 193m,
+                    GasBlend = new Gas
+                    {
+                        Oxygen = 36m
+                    }
+                }
+            };
+
+            //Act
+            result = await engine.CalculateFill(request);
+
+            //Assert
+            Assert.IsNotNull(result, "Should be an object");
+            Assert.IsInstanceOfType(result, typeof(CalculationResult));
+            Assert.AreEqual(request.System, result.System, "Should match");
+            Assert.AreEqual(request.TopOffGasType, result.TopOffGasType, "Should match");
+            Assert.AreEqual(result.TopOffGas, 156.4m, "Should be equal, matches PADI DSAT Gas mix calculator, rouding is off by .1 due to how C# rounds .35 to .4 insetad of .3");
+            Assert.AreEqual(result.FillSpecs.GasBlend.Oxygen, 36.6m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(result.FillSpecs.GasBlend.Helium, 0m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(result.MaxDepth, result.Po214Depth, "Should be equal");
+            Assert.AreEqual(result.Po214Depth, 29.1m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(result.Po216Depth, 34.7m, "Should be equal, matches PADI DSAT Gas mix calculator");
         }
 
         //[TestMethod]
@@ -178,8 +255,9 @@ namespace core.bb.tests.EngineTests
             Assert.IsNotNull(result, "Should be an object");
             Assert.IsInstanceOfType(result, typeof(CalculationResult));
             Assert.AreEqual(request.System, result.System, "Should match");
+            Assert.AreEqual(request.TopOffGasType, result.TopOffGasType, "Should match");
+            Assert.AreEqual(result.TopOffGas, 171.0m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.FillSpecs.GasBlend.Oxygen, 417.7m, "Should be equal, matches PADI DSAT Gas mix calculator");
-            Assert.AreEqual(result.FillSpecs.GasBlend.Air, 2582.3m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.FillSpecs.GasBlend.Helium, 0m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.MaxDepth, result.Po214Depth, "Should be equal");
             Assert.AreEqual(result.Po214Depth, 111.4m, "Should be equal, matches PADI DSAT Gas mix calculator");
