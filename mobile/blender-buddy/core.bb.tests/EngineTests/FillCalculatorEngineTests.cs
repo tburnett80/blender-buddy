@@ -471,5 +471,101 @@ namespace core.bb.tests.EngineTests
             Assert.AreEqual(result.HypoxicDepth, -3.6m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(0, result.Warnings.Count(), "Should be no warnings");
         }
+
+        [TestMethod]
+        public async Task TestFillHighO2Warning()
+        {
+            //Arrange
+            var request = new CalculationRequest
+            {
+                System = MeasureMode.Imperial,
+                FillSpecs = new TankInfo
+                {
+                    Presure = 3000m,
+                    GasBlend = new Gas
+                    {
+                        Helium = 0m,
+                        Oxygen = 45m
+                    }
+                }
+            };
+
+            //Act
+            var engine = new FillCalculatorEngine();
+            var result = await engine.CalculateFill(request);
+
+            //Assert
+            Assert.IsNotNull(result, "Should be an object");
+            Assert.IsInstanceOfType(result, typeof(CalculationResult));
+            Assert.AreEqual(1, result.Warnings.Count(), "Should be no warnings");
+            Assert.AreEqual("Oxygen compatability required for this blend", result.Warnings.FirstOrDefault(), "Should be no warnings");
+        }
+
+        [TestMethod]
+        public async Task TestFillHypoxicWarning()
+        {
+            //Arrange
+            var request = new CalculationRequest
+            {
+                System = MeasureMode.Imperial,
+                FillSpecs = new TankInfo
+                {
+                    Presure = 3000m,
+                    GasBlend = new Gas
+                    {
+                        Helium = 45m,
+                        Oxygen = 15m
+                    }
+                }
+            };
+
+            //Act
+            var engine = new FillCalculatorEngine();
+            var result = await engine.CalculateFill(request);
+
+            //Assert
+            Assert.IsNotNull(result, "Should be an object");
+            Assert.IsInstanceOfType(result, typeof(CalculationResult));
+            Assert.AreEqual(1, result.Warnings.Count(), "Should be no warnings");
+            Assert.AreEqual("Travel Gas required for this blend", result.Warnings.FirstOrDefault(), "Should be no warnings");
+        }
+
+        [TestMethod]
+        public async Task TestFillInvalidBlendWarning()
+        {
+            //Arrange
+            var request = new CalculationRequest
+            {
+                System = MeasureMode.Imperial,
+                FillSpecs = new TankInfo
+                {
+                    Presure = 3000m,
+                    GasBlend = new Gas
+                    {
+                        Helium = 0m,
+                        Oxygen = 28m
+                    }
+                },
+                Residual = new TankInfo
+                {
+                    Presure = 1600m,
+                    GasBlend = new Gas
+                    {
+                        Helium = 0m,
+                        Oxygen = 40m
+                    }
+                }
+            };
+
+            //Act
+            var engine = new FillCalculatorEngine();
+            var result = await engine.CalculateFill(request);
+
+            //Assert
+            Assert.IsNotNull(result, "Should be an object");
+            Assert.IsInstanceOfType(result, typeof(CalculationResult));
+            Assert.AreEqual(1, result.Warnings.Count(), "Should be no warnings");
+            Assert.AreEqual("Cannot achieve this blend, please empty the tank and start over empty.", result.Warnings.FirstOrDefault(), "Should be no warnings");
+        }
     }
 }
