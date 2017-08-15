@@ -39,8 +39,7 @@ namespace core.bb.Engines
 
                 var heliumFillPressure = heliumFillPercent * tankPressure;
 
-                //Calculate how much Oxygen preasure required to achieve the desired blend
-                var oxygenFill = CalculateOxegenFillPressure(
+                var oxygenFill = CalculateOxygenFillPressure(
                     oxygenFillPercent,
                     DeterminTopOffOxygen(request.TopOffGasType, request.TopOffGas),
                     heliumFillPercent,
@@ -72,7 +71,7 @@ namespace core.bb.Engines
 
         }
 
-        private decimal CalculateFillPercent(decimal desiredGasPercent, decimal desiredFillPressure, decimal residualGasPercent = 0m, decimal residualPressure = 0)
+        private static decimal CalculateFillPercent(decimal desiredGasPercent, decimal desiredFillPressure, decimal residualGasPercent = 0m, decimal residualPressure = 0)
         {
             var desiredPercentOfTank = desiredGasPercent * desiredFillPressure;
             var residualMixOfTank = residualGasPercent * residualPressure;
@@ -81,12 +80,12 @@ namespace core.bb.Engines
             return (desiredPercentOfTank - residualMixOfTank) / actualPressure;
         }
         
-        private decimal CalculateOxegenFillPressure(decimal oxygenPercent, decimal topOffOxygenPercent, decimal heliumPercent, decimal nitrogenPercent, decimal tankPressure)
+        private static decimal CalculateOxygenFillPressure(decimal oxygenPercent, decimal topOffOxygenPercent, decimal heliumPercent, decimal nitrogenPercent, decimal tankPressure)
         {
             return (oxygenPercent / (1 - heliumPercent) - topOffOxygenPercent) / nitrogenPercent * tankPressure;
         }
 
-        private decimal CalculateMaxDepth(decimal o2, decimal o2PartialPreasureLimit, MeasureMode system)
+        private static decimal CalculateMaxDepth(decimal o2, decimal o2PartialPreasureLimit, MeasureMode system)
         {
             var mod = (o2PartialPreasureLimit / o2 - 1) * 33;
             if (system == MeasureMode.Metric)
@@ -95,7 +94,7 @@ namespace core.bb.Engines
             return mod;
         }
 
-        private decimal CalculateHypoxicDepth(decimal o2, MeasureMode system, decimal o2PartialPreasureCeiling = MinPpo2)
+        private static decimal CalculateHypoxicDepth(decimal o2, MeasureMode system, decimal o2PartialPreasureCeiling = MinPpo2)
         {
             var ceil = (o2PartialPreasureCeiling / o2 - 1) * 33;
             if (system == MeasureMode.Metric)
@@ -104,7 +103,7 @@ namespace core.bb.Engines
             return ceil;
         }
 
-        private decimal DeterminTopOffOxygen(TopOffGas gasType, Gas gas = null)
+        private static decimal DeterminTopOffOxygen(TopOffGas gasType, Gas gas = null)
         {
             switch (gasType)
             {
@@ -121,7 +120,7 @@ namespace core.bb.Engines
             }
         }
 
-        private decimal DeterminTopOffNitrogen(TopOffGas gasType, Gas gas = null)
+        private static decimal DeterminTopOffNitrogen(TopOffGas gasType, Gas gas = null)
         {
             switch (gasType)
             {
@@ -139,16 +138,5 @@ namespace core.bb.Engines
                     throw new Exception("Could not determin Top off Nitrogen. Empty tank and start over.");
             }
         }
-
-        //private decimal CalculateNitrogenPercent(TankInfo tank)
-        //{
-        //    if (tank.GasBlend.Air > 0)
-        //        return AirNitrogenPercent;
-
-        //    if(tank.Presure == 0 || tank.Presure < tank.GasBlend.Oxygen + tank.GasBlend.Helium)
-        //        throw new Exception("Cannot calculate Nitrogen based on available information. Empty tank to continue.");
-
-        //    return (tank.Presure - (tank.GasBlend.Oxygen + tank.GasBlend.Helium)) / tank.Presure;
-        //}
     }
 }
