@@ -307,8 +307,8 @@ namespace core.bb.tests.EngineTests
             Assert.AreEqual(result.HypoxicDepth, -18.2m, "Should be equal, matches PADI DSAT Gas mix calculator");
         }
 
-        //[TestMethod]
-        public async Task TestFillCalculateTrimixEmptyTank()
+        [TestMethod]
+        public async Task TestFillCalculateTrimix_HeliairEmptyTank()
         {
             //Arrange
             var request = new CalculationRequest
@@ -334,12 +334,13 @@ namespace core.bb.tests.EngineTests
             Assert.IsInstanceOfType(result, typeof(CalculationResult));
             Assert.AreEqual(request.System, result.System, "Should match");
             Assert.AreEqual(request.TopOffGasType, result.TopOffGasType, "Should match");
-            Assert.AreEqual(result.TopOffGas, 171.0m, "Should be equal, matches PADI DSAT Gas mix calculator");
-            Assert.AreEqual(result.FillSpecs.GasBlend.Oxygen, 417.7m, "Should be equal, matches PADI DSAT Gas mix calculator");
-            Assert.AreEqual(result.FillSpecs.GasBlend.Helium, 0m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(result.TopOffGas, 1063.3m, "Should be equal, matches PADI DSAT Gas mix calculator, rouding is off by .1 due to how C# rounds .35 to .4 insetad of .3");
+            Assert.AreEqual(result.FillSpecs.GasBlend.Oxygen, 736.7m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(result.FillSpecs.GasBlend.Helium, 1200m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.MaxDepth, result.Po214Depth, "Should be equal");
             Assert.AreEqual(result.Po214Depth, 111.4m, "Should be equal, matches PADI DSAT Gas mix calculator");
-            Assert.AreEqual(result.Po216Depth, 132.0m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(result.Po216Depth, 132m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(result.HypoxicDepth, -14.4m, "Should be equal, matches PADI DSAT Gas mix calculator");
         }
     }
 }
