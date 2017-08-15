@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Accessors\" />
+    <Compile Remove="Accessors\**" />
+    <EmbeddedResource Remove="Accessors\**" />
+    <None Remove="Accessors\**" />
   </ItemGroup>
 
 </Project>
