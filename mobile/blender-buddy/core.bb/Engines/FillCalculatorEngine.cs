@@ -48,7 +48,7 @@ namespace core.bb.Engines
 
                 var mod = CalculateMaxDepth(request.FillSpecs.GasBlend.Oxygen.ToPercent(), 1.4m, request.System).Round();
 
-                return new CalculationResult
+                var result = new CalculationResult
                 {
                     System = request.System,
                     MaxDepth = mod,
@@ -67,8 +67,15 @@ namespace core.bb.Engines
                         }
                     }
                 };
-            });
 
+                if (result.FillSpecs.GasBlend.Helium >= 0m && result.FillSpecs.GasBlend.Oxygen > 0m)
+                    return result;
+
+                warnings.Add("Cannot achieve this blend, please empty the tank and start over empty.");
+                result.Warnings = warnings;
+
+                return result;
+            });
         }
 
         private static decimal CalculateFillPercent(decimal desiredGasPercent, decimal desiredFillPressure, decimal residualGasPercent = 0m, decimal residualPressure = 0)

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using core.bb.Engines;
 using core.bb.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -42,6 +43,7 @@ namespace core.bb.tests.EngineTests
             Assert.AreEqual(result.Po214Depth, 111.4m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.Po216Depth, 132.0m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.HypoxicDepth, -14.4m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(0, result.Warnings.Count(), "Should be no warnings");
 
             //Arrange
             request = new CalculationRequest
@@ -73,6 +75,7 @@ namespace core.bb.tests.EngineTests
             Assert.AreEqual(result.Po214Depth, 36.9m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.Po216Depth, 43.6m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.HypoxicDepth, -4m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(0, result.Warnings.Count(), "Should be no warnings");
         }
 
         [TestMethod]
@@ -118,6 +121,7 @@ namespace core.bb.tests.EngineTests
             Assert.AreEqual(result.Po214Depth, 95.3m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.Po216Depth, 113.7m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.HypoxicDepth, -16.5m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(0, result.Warnings.Count(), "Should be no warnings");
 
             //Arrange
             request = new CalculationRequest
@@ -158,6 +162,7 @@ namespace core.bb.tests.EngineTests
             Assert.AreEqual(result.Po214Depth, 31.4m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.Po216Depth, 37.3m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.HypoxicDepth, -4.7m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(0, result.Warnings.Count(), "Should be no warnings");
         }
 
         [TestMethod]
@@ -198,6 +203,7 @@ namespace core.bb.tests.EngineTests
             Assert.AreEqual(result.Po214Depth, 95.3m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.Po216Depth, 113.7m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.HypoxicDepth, -16.5m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(0, result.Warnings.Count(), "Should be no warnings");
 
             //Arrange
             request = new CalculationRequest
@@ -233,6 +239,7 @@ namespace core.bb.tests.EngineTests
             Assert.AreEqual(result.Po214Depth, 29.1m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.Po216Depth, 34.7m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.HypoxicDepth, -5m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(0, result.Warnings.Count(), "Should be no warnings");
         }
 
         [TestMethod]
@@ -269,6 +276,7 @@ namespace core.bb.tests.EngineTests
             Assert.AreEqual(result.Po214Depth, 95.3m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.Po216Depth, 113.7m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.HypoxicDepth, -16.5m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(0, result.Warnings.Count(), "Should be no warnings");
         }
 
         [TestMethod]
@@ -305,6 +313,7 @@ namespace core.bb.tests.EngineTests
             Assert.AreEqual(result.Po214Depth, 82.5m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.Po216Depth, 99m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.HypoxicDepth, -18.2m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(0, result.Warnings.Count(), "Should be no warnings");
         }
 
         [TestMethod]
@@ -341,6 +350,7 @@ namespace core.bb.tests.EngineTests
             Assert.AreEqual(result.Po214Depth, 111.4m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.Po216Depth, 132m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.HypoxicDepth, -14.4m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(0, result.Warnings.Count(), "Should be no warnings");
 
             //Arrange
             request = new CalculationRequest
@@ -372,6 +382,7 @@ namespace core.bb.tests.EngineTests
             Assert.AreEqual(result.Po214Depth, 64.1m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.Po216Depth, 74.7m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.HypoxicDepth, -0.5m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(0, result.Warnings.Count(), "Should be no warnings");
         }
 
         [TestMethod]
@@ -417,6 +428,7 @@ namespace core.bb.tests.EngineTests
             Assert.AreEqual(result.Po214Depth, 121m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.Po216Depth, 143m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.HypoxicDepth, -13.2m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(0, result.Warnings.Count(), "Should be no warnings");
 
             //Arrange
             request = new CalculationRequest
@@ -457,6 +469,7 @@ namespace core.bb.tests.EngineTests
             Assert.AreEqual(result.Po214Depth, 40.2m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.Po216Depth, 47.4m, "Should be equal, matches PADI DSAT Gas mix calculator");
             Assert.AreEqual(result.HypoxicDepth, -3.6m, "Should be equal, matches PADI DSAT Gas mix calculator");
+            Assert.AreEqual(0, result.Warnings.Count(), "Should be no warnings");
         }
     }
 }
