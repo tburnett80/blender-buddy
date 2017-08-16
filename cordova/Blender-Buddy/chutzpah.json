@@ -1,0 +1,20 @@
+﻿{
+  "Compile": {
+    "Extensions": [ ".ts" ],
+    "ExtensionsWithNoOutput": [ ".d.ts" ],
+    "Executable": "testCompile.bat",
+    "UseSourceMaps": true
+  },
+  "References": [
+    {
+      "Includes": [ "*/scripts/*.ts" ],
+      "Excludes": [ "*/scripts/*.d.ts" ]
+    }
+  ],
+  "Tests": [
+    {
+      "Includes": [ "*/tests/*.ts" ],
+      "Excludes": [ "*/tests/*.d.ts" ]
+    }
+  ]
+}
