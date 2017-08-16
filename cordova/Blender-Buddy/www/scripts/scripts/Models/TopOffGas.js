@@ -9,10 +9,5 @@ define(["require", "exports"], function (require, exports) {
         TopOffGas[TopOffGas["Ean36"] = 2] = "Ean36";
         TopOffGas[TopOffGas["Custom"] = 3] = "Custom";
     })(TopOffGas = exports.TopOffGas || (exports.TopOffGas = {}));
-    var MeasureMode;
-    (function (MeasureMode) {
-        MeasureMode[MeasureMode["Imperial"] = 0] = "Imperial";
-        MeasureMode[MeasureMode["Metric"] = 1] = "Metric";
-    })(MeasureMode = exports.MeasureMode || (exports.MeasureMode = {}));
 });
-//# sourceMappingURL=Enums.js.map
+//# sourceMappingURL=TopOffGas.js.map

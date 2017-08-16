@@ -1,5 +1,7 @@
 ﻿import { Gas } from './Gas';
 import { TankInfo } from './TankInfo';
+import { MeasureMode } from './MeasureMode';
+import {TopOffGas } from './TopOffGas';
 
 export class CalculationRequest {
     system: MeasureMode;

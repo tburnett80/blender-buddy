@@ -1,4 +1,4 @@
-define(["require", "exports", "../Models/CalculationResult"], function (require, exports, CalculationResult_1) {
+define(["require", "exports", "../Models/CalculationResult", "../Models/MeasureMode", "../Models/TopOffGas"], function (require, exports, CalculationResult_1, MeasureMode_1, TopOffGas_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var BlendCalculator = (function () {
@@ -42,26 +42,26 @@ define(["require", "exports", "../Models/CalculationResult"], function (require,
         };
         BlendCalculator.CalculateMaxDepth = function (o2Percent, o2PartialPreasureLimit, system) {
             var mod = (o2PartialPreasureLimit / o2Percent - 1) * 33;
-            if (system === MeasureMode.Metric)
+            if (system === MeasureMode_1.MeasureMode.Metric)
                 mod /= 3.28;
             return mod;
         };
         BlendCalculator.CalculateHypoxicDepth = function (o2Percent, system, o2PartialPreasureCeiling) {
             if (o2PartialPreasureCeiling === void 0) { o2PartialPreasureCeiling = BlendCalculator.minPpO2; }
             var ceiling = (o2PartialPreasureCeiling / o2Percent - 1) * 33;
-            if (system === MeasureMode.Metric)
+            if (system === MeasureMode_1.MeasureMode.Metric)
                 ceiling /= 3.28;
             return ceiling;
         };
         BlendCalculator.DeterminTopOffOxygen = function (gasType, gas) {
             switch (gasType) {
-                case TopOffGas.Air:
+                case TopOffGas_1.TopOffGas.Air:
                     return BlendCalculator.airO2Percent;
-                case TopOffGas.Ean32:
+                case TopOffGas_1.TopOffGas.Ean32:
                     return BlendCalculator.ean32_O2Percent;
-                case TopOffGas.Ean36:
+                case TopOffGas_1.TopOffGas.Ean36:
                     return BlendCalculator.ean36_O2Percent;
-                case TopOffGas.Custom:
+                case TopOffGas_1.TopOffGas.Custom:
                     if (!gas)
                         throw new RangeError("Could not determin Top off Oxygen. Empty tank and start over.");
                     return gas.oxygen.toPercent();
@@ -71,13 +71,13 @@ define(["require", "exports", "../Models/CalculationResult"], function (require,
         };
         BlendCalculator.DeterminTopOffNitrogen = function (gasType, gas) {
             switch (gasType) {
-                case TopOffGas.Air:
+                case TopOffGas_1.TopOffGas.Air:
                     return 1 - BlendCalculator.airO2Percent;
-                case TopOffGas.Ean32:
+                case TopOffGas_1.TopOffGas.Ean32:
                     return 1 - BlendCalculator.ean32_O2Percent;
-                case TopOffGas.Ean36:
+                case TopOffGas_1.TopOffGas.Ean36:
                     return 1 - BlendCalculator.ean36_O2Percent;
-                case TopOffGas.Custom:
+                case TopOffGas_1.TopOffGas.Custom:
                     if (!gas)
                         throw new RangeError("Could not determin Top off Nitrogen. Empty tank and start over.");
                     return (100 - gas.oxygen + gas.helium).toPercent();

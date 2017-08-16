@@ -1,14 +1,14 @@
 ﻿import { CalculationRequest } from '../Models/CalculationRequest';
 import { CalculationResult } from '../Models/CalculationResult';
 import { Gas } from '../Models/Gas';
+import { MeasureMode } from '../Models/MeasureMode';
+import { TopOffGas } from '../Models/TopOffGas';
 
 export class BlendCalculator {
     static readonly airO2Percent = 0.21;
     static readonly ean32_O2Percent = 0.32;
     static readonly ean36_O2Percent = 0.36;
     static readonly minPpO2 = 0.18;
-
-    constructor() { }
 
     public CalculateFill(request: CalculationRequest): CalculationResult {
         let result = new CalculationResult();
