@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "core.bb", "core.bb\core.bb.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core.bb.tests", "core.bb.tests\core.bb.tests.csproj", "{F5BC4A0A-9FC5-4116-9BBA-83031A78855F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ui.android.bb", "ui.android.bb\ui.android.bb.csproj", "{E798944E-C628-4AAC-A20B-A77AF7DD9FB9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +21,6 @@ Global
 		{F5BC4A0A-9FC5-4116-9BBA-83031A78855F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5BC4A0A-9FC5-4116-9BBA-83031A78855F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5BC4A0A-9FC5-4116-9BBA-83031A78855F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E798944E-C628-4AAC-A20B-A77AF7DD9FB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E798944E-C628-4AAC-A20B-A77AF7DD9FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E798944E-C628-4AAC-A20B-A77AF7DD9FB9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{E798944E-C628-4AAC-A20B-A77AF7DD9FB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E798944E-C628-4AAC-A20B-A77AF7DD9FB9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E798944E-C628-4AAC-A20B-A77AF7DD9FB9}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
