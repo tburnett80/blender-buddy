@@ -1,10 +1,4 @@
 ﻿///<reference path="../../node_modules/definitely-typed-jasmine/jasmine.d.ts"/>
-///<reference path="../Calculator/BlendCalculator.ts"/>
-///<reference path="../Models/CalculationRequest.ts"/>
-///<reference path="../Models/CalculationResult.ts"/>
-///<reference path="../Models/MeasureMode.ts"/>
-///<reference path="../Models/TankInfo.ts"/>
-///<reference path="../Models/Gas.ts"/>
 
 import { BlendCalculator } from "../Calculator/BlendCalculator";
 import { CalculationRequest } from "../Models/CalculationRequest";

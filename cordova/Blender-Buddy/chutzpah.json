@@ -14,15 +14,31 @@
   },
   "References": [
     {
-      "Path": "./www/lib/require.2.1.8.js",
-      "Includes": [ "*/scripts/*.ts", "*/scripts/Calculator/*.ts", "*/scripts/Models/*.ts" ],
-      "Excludes": [ "*/scripts/*.d.ts", "*/scripts/Calculator/*.d.ts", "*/scripts/Models/*.d.ts" ]
+      "Path": "www/lib",
+      "IsTestFrameworkFile": false,
+      "Includes": [ "*.js" ]
+    },
+    {
+      "Path": "scripts/Extensions",
+      "Includes": [ "*.ts" ],
+      "Excludes": [ "*.d.ts" ]
+    },
+    {
+      "Path": "scripts/Calculator",
+      "Includes": [ "*.ts" ],
+      "Excludes": [ "*.d.ts" ]
+    },
+    {
+      "Path": "scripts/Models",
+      "Includes": [ "*.ts" ],
+      "Excludes": [ "*.d.ts" ]
     }
   ],
   "Tests": [
     {
-      "Includes": [ "*/tests/*.ts" ],
-      "Excludes": [ "*/tests/*.d.ts" ]
+      "Path": "scripts/tests",
+      "Includes": [ "*.ts" ],
+      "Excludes": [ "*.d.ts" ]
     }
   ]
 }
