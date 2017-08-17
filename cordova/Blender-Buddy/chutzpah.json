@@ -15,8 +15,8 @@
   "References": [
     {
       "Path": "./www/lib/require.2.1.8.js",
-      "Includes": [ "*/scripts/*.ts" ],
-      "Excludes": [ "*/scripts/*.d.ts" ]
+      "Includes": [ "*/scripts/*.ts", "*/scripts/Calculator/*.ts", "*/scripts/Models/*.ts" ],
+      "Excludes": [ "*/scripts/*.d.ts", "*/scripts/Calculator/*.d.ts", "*/scripts/Models/*.d.ts" ]
     }
   ],
   "Tests": [
