@@ -1,0 +1,28 @@
+﻿{
+  "Framework": "jasmine",
+  "Compile": {
+    "Mode": "External",
+    "Extensions": [ ".ts" ],
+    "ExtensionsWithNoOutput": [ ".d.ts" ],
+    "UseSourceMaps": true,
+    "Paths": [
+      {
+        "SourcePath": "./",
+        "OutputPath": "./www"
+      }
+    ]
+  },
+  "References": [
+    {
+      "Path": "./www/lib/require.2.1.8.js",
+      "Includes": [ "*/scripts/*.ts" ],
+      "Excludes": [ "*/scripts/*.d.ts" ]
+    }
+  ],
+  "Tests": [
+    {
+      "Includes": [ "*/tests/*.ts" ],
+      "Excludes": [ "*/tests/*.d.ts" ]
+    }
+  ]
+}
