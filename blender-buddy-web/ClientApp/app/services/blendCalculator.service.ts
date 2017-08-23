@@ -35,8 +35,8 @@ export class BlendCalculatorService {
         let heliumFillPressure = heliumFillPercent * tankPressure;
 
         let oxygenFillPressure = BlendCalculatorService.calculateOxygenFillPressure(oxygenFillPercent,
-            BlendCalculatorService.determinTopOffOxygen(request.topOffGasType, request.topOffGas), heliumFillPercent,
-            BlendCalculatorService.determinTopOffNitrogen(request.topOffGasType, request.topOffGas),
+            BlendCalculatorService.determinTopOffOxygen(request.topOffGasType, request.topOffGasDetails), heliumFillPercent,
+            BlendCalculatorService.determinTopOffNitrogen(request.topOffGasType, request.topOffGasDetails),
             tankPressure - heliumFillPressure);
 
         let mod = BlendCalculatorService.calculateMaxDepth(request.fillSpecs.gasBlend.oxygen.toPercent(), 1.4, request.system).round();
@@ -46,7 +46,7 @@ export class BlendCalculatorService {
         result.pO214Depth = mod;
         result.pO216Depth = BlendCalculatorService.calculateMaxDepth(request.fillSpecs.gasBlend.oxygen.toPercent(), 1.6, request.system).round();
         result.hypoxicDepth = BlendCalculatorService.calculateHypoxicDepth(request.fillSpecs.gasBlend.oxygen.toPercent(), request.system).round();
-        result.topOffGas = tankPressure - oxygenFillPressure.round() - heliumFillPressure.round();
+        result.topOffGasPressure = tankPressure - oxygenFillPressure.round() - heliumFillPressure.round();
         result.topOffGasType = request.topOffGasType;
         result.fillSpecs.gasBlend.oxygen = oxygenFillPressure.round();
         result.fillSpecs.gasBlend.helium = heliumFillPressure.round();
