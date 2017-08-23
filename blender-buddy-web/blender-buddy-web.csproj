@@ -20,6 +20,28 @@
     <Content Remove="ClientApp\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="ClientApp\app\extensions\numberExtensions.ts" />
+    <None Remove="ClientApp\app\models\calculator\calculationRequest.ts" />
+    <None Remove="ClientApp\app\models\calculator\calculationResult.ts" />
+    <None Remove="ClientApp\app\models\calculator\gas.ts" />
+    <None Remove="ClientApp\app\models\calculator\measureMode.ts" />
+    <None Remove="ClientApp\app\models\calculator\tankInfo.ts" />
+    <None Remove="ClientApp\app\models\calculator\topOffGas.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\extensions\numberExtensions.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\calculator\calculationRequest.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\calculator\calculationResult.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\calculator\gas.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\calculator\measureMode.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\calculator\tankInfo.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\calculator\topOffGas.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\blendCalculator.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\blendCalculator.service.ts" />
+  </ItemGroup>
+
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
