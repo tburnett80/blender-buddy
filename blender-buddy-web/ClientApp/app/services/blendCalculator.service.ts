@@ -46,7 +46,7 @@ export class BlendCalculatorService {
         result.pO214Depth = mod;
         result.pO216Depth = BlendCalculatorService.calculateMaxDepth(request.fillSpecs.gasBlend.oxygen.toPercent(), 1.6, request.system).round();
         result.hypoxicDepth = BlendCalculatorService.calculateHypoxicDepth(request.fillSpecs.gasBlend.oxygen.toPercent(), request.system).round();
-        result.topOffGasPressure = tankPressure - oxygenFillPressure.round() - heliumFillPressure.round();
+        result.topOffGasPressure = (tankPressure - oxygenFillPressure.round() - heliumFillPressure.round()).round();
         result.topOffGasType = request.topOffGasType;
         result.fillSpecs.gasBlend.oxygen = oxygenFillPressure.round();
         result.fillSpecs.gasBlend.helium = heliumFillPressure.round();

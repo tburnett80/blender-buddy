@@ -497,8 +497,8 @@ namespace core.bb.tests.EngineTests
             //Assert
             Assert.IsNotNull(result, "Should be an object");
             Assert.IsInstanceOfType(result, typeof(CalculationResult));
-            Assert.AreEqual(1, result.Warnings.Count(), "Should be no warnings");
-            Assert.AreEqual("Oxygen compatability required for this blend", result.Warnings.FirstOrDefault(), "Should be no warnings");
+            Assert.AreEqual(1, result.Warnings.Count(), "Should be warnings");
+            Assert.AreEqual("Oxygen compatability required for this blend", result.Warnings.FirstOrDefault(), "Should be warnings");
         }
 
         [TestMethod]
