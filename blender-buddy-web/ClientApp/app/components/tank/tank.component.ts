@@ -9,37 +9,49 @@ import { TankInfo } from '../../models/calculator/tankinfo';
 })
 export class TankComponent {
     measureModeService: MeasureModeService;
+
+    imperialSubscription: Subscription;
     measurePreasureSubscription: Subscription;
     measureDistanceSubscription: Subscription;
 
+    imperialSelected: boolean;
     measurePreasure: string;
     measureDistance: string;
-
-    @Input() tankPreasure: number;
     tank: TankInfo;
 
+    @Input() isResidual: boolean;
+    
     constructor(measureModeService: MeasureModeService) {
         this.measureModeService = measureModeService;
 
         this.tank = new TankInfo();
-        
+
         this.tank.gasBlend.helium = 0;
         this.tank.gasBlend.oxygen = 21;
         this.tank.gasBlend.nitrogen = 79;
     }
 
     ngOnInit() {
+        this.imperialSubscription =
+            this.measureModeService.imperialSelected.subscribe(value => this.imperialSelected = value);
+
         this.measurePreasureSubscription =
             this.measureModeService.measurePreasure.subscribe(value => this.measurePreasure = value);
 
         this.measureDistanceSubscription =
             this.measureModeService.measureDistance.subscribe(value => this.measureDistance = value);
 
-        if(this.tank.pressure < 0)
-            this.tank.pressure = this.tankPreasure;
+        if (this.isResidual) {
+            if (this.tank.pressure === -1)
+                this.tank.pressure = 500; 
+        } else {
+            if (this.tank.pressure === -1)
+                this.tank.pressure = 3000; 
+        }
     }
 
     ngOnDestroy() {
+        this.imperialSubscription.unsubscribe();
         this.measurePreasureSubscription.unsubscribe();
         this.measureDistanceSubscription.unsubscribe();
     }
