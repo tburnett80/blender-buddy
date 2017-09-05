@@ -1,14 +1,13 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
 import { MeasureModeService } from '../../services/measure-system.service';
 
 @Component({
-    selector: 'calculator',
-    templateUrl: './calculator.component.html',
-    styleUrls: ['./calculator.component.css']
+    selector: 'tank',
+    templateUrl: './Tank.component.html'
 })
-export class CalculatorComponent {
+export class TankComponent {
     measureModeService: MeasureModeService;
     imperialSubscription: Subscription;
     measurePreasureSubscription: Subscription;
@@ -20,7 +19,6 @@ export class CalculatorComponent {
 
     constructor(measureModeService: MeasureModeService) {
         this.measureModeService = measureModeService;
-        this.systemSelectionChange(true);
     }
 
     ngOnInit() {
@@ -38,9 +36,5 @@ export class CalculatorComponent {
         this.imperialSubscription.unsubscribe();
         this.measurePreasureSubscription.unsubscribe();
         this.measureDistanceSubscription.unsubscribe();
-    }
-
-    private systemSelectionChange(entry: boolean): void {
-        this.measureModeService.updateSystemSelection(entry);
     }
 }

@@ -1,1 +1,65 @@
-﻿
+﻿<form>
+    <div class="container top-pad-20">
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Measurement System
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="radio-inline">
+                            <input type="radio" [checked]="imperialSelected === true" (change)="systemSelectionChange(!imperialSelected)" name="measurement" value="imperial" />Imperial
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" [checked]="imperialSelected === false" (change)="systemSelectionChange(!imperialSelected)" name="measurement" value="metric" />Metric
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Mixing Pressures to Add
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <p>Oxygen<span class="pull-right">0 {{measurePreasure}}</span></p>
+                        <p>Air<span class="pull-right">0 {{measurePreasure}}</span></p>
+                        <p>Helium<span class="pull-right">0 {{measurePreasure}}</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Oxygen Limits
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <p>Oxygen<span class="pull-right">0 {{measureDistance}}</span></p>
+                        <p>Air<span class="pull-right">0 {{measureDistance}}</span></p>
+                        <p>Helium<span class="pull-right">0 {{measureDistance}}</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Desired Mix
+                </div>
+                <div class="panel-body">
+                    <tank></tank>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Residual Mix
+                </div>
+                <div class="panel-body">
+                    <tank></tank>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
