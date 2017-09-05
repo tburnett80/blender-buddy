@@ -7,6 +7,6 @@ export class TankInfo {
 
     constructor() {
         this.gasBlend = new Gas();
-        this.pressure = 0;
+        this.pressure = -1;
     }
 }

@@ -1,23 +1,23 @@
 ﻿<div class="form-group">
     <label>Tank Preasure (in {{measurePreasure}})</label>
-    <input class="form-control" value="3000" type="number" />
+    <input class="form-control" [(ngModel)]="tank.pressure" type="number" />
 </div>
 <div class="form-group">
     <div class="progress">
-        <div class="progress-bar progress-bar-success" role="progressbar" [style.width]="oxygenPercent + '%'">O2</div>
-        <div class="progress-bar progress-bar-warning" role="progressbar" [style.width]="heliumPercent + '%'">He</div>
-        <div class="progress-bar" role="progressbar" [style.width]="nitrogenPercent + '%'">N2</div>
+        <div class="progress-bar progress-bar-success" role="progressbar" [style.width]="tank.gasBlend.oxygen + '%'">O2</div>
+        <div class="progress-bar progress-bar-warning" role="progressbar" [style.width]="tank.gasBlend.helium + '%'">He</div>
+        <div class="progress-bar" role="progressbar" [style.width]="tank.gasBlend.nitrogen + '%'">N2</div>
     </div>
 </div>
 <div class="form-group col-sm-4">
     <label>Oxygen %</label>
-    <input class="form-control" max="100" [(ngModel)]="oxygenPercent" (change)="updatePercents()" type="number" />
+    <input class="form-control" max="100" [(ngModel)]="tank.gasBlend.oxygen" (change)="updatePercents()" type="number" />
 </div>
 <div class="form-group col-sm-4">
     <label>Helium %</label>
-    <input class="form-control" max="100" [(ngModel)]="heliumPercent" (change)="updatePercents()" type="number" />
+    <input class="form-control" max="100" [(ngModel)]="tank.gasBlend.helium" (change)="updatePercents()" type="number" />
 </div>
 <div class="form-group col-sm-4">
     <label>Nitrogen %</label>
-    <input class="form-control" max="100" [(ngModel)]="nitrogenPercent" (change)="updatePercents()" type="number" />
+    <input class="form-control" max="100" [(ngModel)]="tank.gasBlend.nitrogen" (change)="updatePercents()" type="number" />
 </div>

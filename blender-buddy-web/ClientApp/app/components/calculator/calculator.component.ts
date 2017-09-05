@@ -1,15 +1,22 @@
 ﻿import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
+import { CalculationRequest } from '../../models/calculator/calculationRequest';
+import { CalculationResult } from '../../models/calculator/calculationResult';
+
 import { MeasureModeService } from '../../services/measure-system.service';
+import { BlendCalculatorService } from '../../services/blendCalculator.service';
 
 @Component({
     selector: 'calculator',
     templateUrl: './calculator.component.html',
-    styleUrls: ['./calculator.component.css']
+    styleUrls: ['./calculator.component.css'],
+    providers: [ BlendCalculatorService ]
 })
 export class CalculatorComponent {
     measureModeService: MeasureModeService;
+    blendCalculator: BlendCalculatorService;
+
     imperialSubscription: Subscription;
     measurePreasureSubscription: Subscription;
     measureDistanceSubscription: Subscription;
@@ -18,8 +25,9 @@ export class CalculatorComponent {
     measurePreasure: string;
     measureDistance: string;
 
-    constructor(measureModeService: MeasureModeService) {
+    constructor(measureModeService: MeasureModeService, blendCalculator: BlendCalculatorService) {
         this.measureModeService = measureModeService;
+        this.blendCalculator = blendCalculator;
         this.systemSelectionChange(true);
     }
 
