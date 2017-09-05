@@ -4,20 +4,20 @@
 </div>
 <div class="form-group">
     <div class="progress">
-        <div class="progress-bar progress-bar-success" role="progressbar" style="width: 21%;">O2</div>
-        <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 0%;">He</div>
-        <div class="progress-bar" role="progressbar" style="width: 79%;">N2</div>
+        <div class="progress-bar progress-bar-success" role="progressbar" [style.width]="oxygenPercent + '%'">O2</div>
+        <div class="progress-bar progress-bar-warning" role="progressbar" [style.width]="heliumPercent + '%'">He</div>
+        <div class="progress-bar" role="progressbar" [style.width]="nitrogenPercent + '%'">N2</div>
     </div>
 </div>
 <div class="form-group col-sm-4">
     <label>Oxygen %</label>
-    <input class="form-control" value="21" type="number" />
+    <input class="form-control" max="100" [(ngModel)]="oxygenPercent" (change)="updatePercents()" type="number" />
 </div>
 <div class="form-group col-sm-4">
     <label>Helium %</label>
-    <input class="form-control" value="0" type="number" />
+    <input class="form-control" max="100" [(ngModel)]="heliumPercent" (change)="updatePercents()" type="number" />
 </div>
 <div class="form-group col-sm-4">
     <label>Nitrogen %</label>
-    <input class="form-control" value="79" type="number" />
+    <input class="form-control" max="100" [(ngModel)]="nitrogenPercent" (change)="updatePercents()" type="number" />
 </div>

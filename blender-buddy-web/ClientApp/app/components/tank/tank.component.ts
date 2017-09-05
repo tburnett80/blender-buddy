@@ -17,8 +17,15 @@ export class TankComponent {
     measurePreasure: string;
     measureDistance: string;
 
+    heliumPercent: number;
+    oxygenPercent: number;
+    nitrogenPercent: number;
+
     constructor(measureModeService: MeasureModeService) {
         this.measureModeService = measureModeService;
+        this.heliumPercent = 0;
+        this.oxygenPercent = 21;
+        this.nitrogenPercent = 79;
     }
 
     ngOnInit() {
@@ -36,5 +43,15 @@ export class TankComponent {
         this.imperialSubscription.unsubscribe();
         this.measurePreasureSubscription.unsubscribe();
         this.measureDistanceSubscription.unsubscribe();
+    }
+
+    private updatePercents(): void {
+        if (this.oxygenPercent > 100)
+            this.oxygenPercent = 100;
+
+        if (this.oxygenPercent + this.heliumPercent > 100)
+            this.heliumPercent = 100 - this.oxygenPercent;
+
+        this.nitrogenPercent = 100 - (this.oxygenPercent + this.heliumPercent);
     }
 }
