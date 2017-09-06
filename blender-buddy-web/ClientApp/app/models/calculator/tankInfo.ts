@@ -1,5 +1,4 @@
-﻿
-import { Gas } from './gas';
+﻿import { Gas } from './gas';
 
 export class TankInfo {
     public pressure: number;

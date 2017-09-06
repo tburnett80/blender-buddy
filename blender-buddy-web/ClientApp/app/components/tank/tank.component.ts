@@ -1,7 +1,7 @@
 ﻿import { Component, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { MeasureModeService } from '../../services/measure-system.service';
-import { TankInfo } from '../../models/calculator/tankinfo';
+import { TankInfo } from '../../models/calculator/tankInfo';
 
 @Component({
     selector: 'tank',

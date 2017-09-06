@@ -1,8 +1,8 @@
 ﻿
 export class Gas {
-    public oxygen: number;
-    public nitrogen: number;
-    public helium: number;
+    oxygen: number;
+    nitrogen: number;
+    helium: number;
 
     constructor() {
         this.oxygen = 0;
