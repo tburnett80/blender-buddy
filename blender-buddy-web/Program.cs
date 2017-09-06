@@ -24,8 +24,8 @@ namespace blender_buddy_web
 
         public static IWebHost BuildWebHost(string[] args, IConfigurationRoot cfg) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseKestrel()
                 .UseStartup<Startup>()
-                //.UseKestrel()
                 .UseConfiguration(cfg)
                 .Build();
     }
