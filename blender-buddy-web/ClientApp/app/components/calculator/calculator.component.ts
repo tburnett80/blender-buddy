@@ -48,7 +48,7 @@ export class CalculatorComponent {
         this.measureDistanceSubscription.unsubscribe();
     }
 
-    private systemSelectionChange(entry: boolean): void {
+    systemSelectionChange(entry: boolean): void {
         this.measureModeService.updateSystemSelection(entry);
     }
 }

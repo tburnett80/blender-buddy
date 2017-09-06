@@ -56,7 +56,7 @@ export class TankComponent {
         this.measureDistanceSubscription.unsubscribe();
     }
 
-    private updatePercents(): void {
+    updatePercents(): void {
         if (this.tank.gasBlend.oxygen > 100)
             this.tank.gasBlend.oxygen = 100;
 
