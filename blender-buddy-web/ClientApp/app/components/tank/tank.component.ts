@@ -5,7 +5,7 @@ import { TankInfo } from '../../models/calculator/tankinfo';
 
 @Component({
     selector: 'tank',
-    templateUrl: './Tank.component.html'
+    templateUrl: './tank.component.html'
 })
 export class TankComponent {
     measureModeService: MeasureModeService;
