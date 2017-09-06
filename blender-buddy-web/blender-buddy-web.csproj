@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
@@ -24,13 +24,6 @@
     <None Remove="ClientApp\app\components\calculator\calculator.component.spec.ts" />
     <None Remove="ClientApp\app\components\tank\tank.component.spect.ts" />
     <None Remove="ClientApp\app\components\tank\tank.component.ts" />
-    <None Remove="ClientApp\app\extensions\numberExtensions.ts" />
-    <None Remove="ClientApp\app\models\calculator\calculationRequest.ts" />
-    <None Remove="ClientApp\app\models\calculator\calculationResult.ts" />
-    <None Remove="ClientApp\app\models\calculator\gas.ts" />
-    <None Remove="ClientApp\app\models\calculator\measureMode.ts" />
-    <None Remove="ClientApp\app\models\calculator\tankInfo.ts" />
-    <None Remove="ClientApp\app\models\calculator\topOffGas.ts" />
     <None Remove="ClientApp\app\services\measure-system.service.ts" />
   </ItemGroup>
 
