@@ -3,52 +3,62 @@ import { Http } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
 import { CalculationRequest } from '../../models/calculator/calculationRequest';
 import { CalculationResult } from '../../models/calculator/calculationResult';
-
-import { MeasureModeService } from '../../services/measure-system.service';
 import { BlendCalculatorService } from '../../services/blendCalculator.service';
+import { CalculatorDataService } from '../../services/calculator-data.service';
 
 @Component({
     selector: 'calculator',
     templateUrl: './calculator.component.html',
-    styleUrls: ['./calculator.component.css'],
-    providers: [ BlendCalculatorService ]
+    styleUrls: ['./calculator.component.css']
 })
 export class CalculatorComponent {
-    measureModeService: MeasureModeService;
-    blendCalculator: BlendCalculatorService;
+    private blendCalculator: BlendCalculatorService;
+    private calculatorDataService: CalculatorDataService;
 
-    imperialSubscription: Subscription;
-    measurePreasureSubscription: Subscription;
-    measureDistanceSubscription: Subscription;
+    private imperialSubscription: Subscription;
+    private measurePreasureSubscription: Subscription;
+    private measureDistanceSubscription: Subscription;
+    private requestSubscription: Subscription;
 
     imperialSelected: boolean;
     measurePreasure: string;
     measureDistance: string;
+    result: CalculationResult;
 
-    constructor(measureModeService: MeasureModeService, blendCalculator: BlendCalculatorService) {
-        this.measureModeService = measureModeService;
+    constructor(blendCalculator: BlendCalculatorService, calculatorDataService: CalculatorDataService) {
         this.blendCalculator = blendCalculator;
+        this.calculatorDataService = calculatorDataService;
         this.systemSelectionChange(true);
     }
 
     ngOnInit() {
         this.imperialSubscription =
-            this.measureModeService.imperialSelected.subscribe(value => this.imperialSelected = value);
+            this.calculatorDataService.imperialSelected.subscribe(value => this.imperialSelected = value);
 
         this.measurePreasureSubscription =
-            this.measureModeService.measurePreasure.subscribe(value => this.measurePreasure = value);
+            this.calculatorDataService.measurePreasure.subscribe(value => this.measurePreasure = value);
 
         this.measureDistanceSubscription =
-            this.measureModeService.measureDistance.subscribe(value => this.measureDistance = value);
+            this.calculatorDataService.measureDistance.subscribe(value => this.measureDistance = value);
+
+        this.requestSubscription =
+            this.calculatorDataService.requestObservable.subscribe(value => this.runCalculation(value));
     }
 
     ngOnDestroy() {
         this.imperialSubscription.unsubscribe();
         this.measurePreasureSubscription.unsubscribe();
         this.measureDistanceSubscription.unsubscribe();
+        this.requestSubscription.unsubscribe();
     }
 
     systemSelectionChange(entry: boolean): void {
-        this.measureModeService.updateSystemSelection(entry);
+        this.calculatorDataService.updateSystemSelection(entry);
+    }
+
+    private runCalculation(request: CalculationRequest): void {
+        this.result = this.blendCalculator.calculateFill(request);
+
+        console.log('result: ', this.result);
     }
 }

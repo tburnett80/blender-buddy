@@ -22,9 +22,9 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <p>Oxygen<span class="pull-right">0 {{measurePreasure}}</span></p>
-                        <p>Air<span class="pull-right">0 {{measurePreasure}}</span></p>
-                        <p>Helium<span class="pull-right">0 {{measurePreasure}}</span></p>
+                        <p>Oxygen<span class="pull-right">{{result.fillSpecs.gasBlend.oxygen}} {{measurePreasure}}</span></p>
+                        <p>Air<span class="pull-right">{{result.topOffGasPressure}} {{measurePreasure}}</span></p>
+                        <p>Helium<span class="pull-right">{{result.fillSpecs.gasBlend.helium}} {{measurePreasure}}</span></p>
                     </div>
                 </div>
             </div>
@@ -34,9 +34,9 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <p>Oxygen<span class="pull-right">0 {{measureDistance}}</span></p>
-                        <p>Air<span class="pull-right">0 {{measureDistance}}</span></p>
-                        <p>Helium<span class="pull-right">0 {{measureDistance}}</span></p>
+                        <p>Hypoxic Depth<span class="pull-right">{{result.hypoxicDepth}} {{measureDistance}}</span></p>
+                        <p>PP O2 1.4% Depth<span class="pull-right">{{result.pO214Depth}} {{measureDistance}}</span></p>
+                        <p>PP 02 1.6% Depth<span class="pull-right">{{result.pO216Depth}} {{measureDistance}}</span></p>
                     </div>
                 </div>
             </div>

@@ -41,6 +41,7 @@
     <TypeScriptCompile Include="ClientApp\app\models\calculator\topOffGas.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\blendCalculator.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\blendCalculator.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\calculator-data.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\measure-system.service.ts" />
   </ItemGroup>
 

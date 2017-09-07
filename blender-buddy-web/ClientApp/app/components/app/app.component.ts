@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { MeasureModeService } from '../../services/measure-system.service';
+import { CalculatorDataService } from '../../services/calculator-data.service';
+import { BlendCalculatorService } from '../../services/blendCalculator.service';
 
 @Component({
     selector: 'app',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    providers: [ MeasureModeService ]
+    providers: [CalculatorDataService, BlendCalculatorService ]
 })
 export class AppComponent {
 }

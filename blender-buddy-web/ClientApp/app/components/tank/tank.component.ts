@@ -1,6 +1,6 @@
 ﻿import { Component, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { MeasureModeService } from '../../services/measure-system.service';
+import { CalculatorDataService } from '../../services/calculator-data.service';
 import { TankInfo } from '../../models/calculator/tankInfo';
 
 @Component({
@@ -8,11 +8,10 @@ import { TankInfo } from '../../models/calculator/tankInfo';
     templateUrl: './tank.component.html'
 })
 export class TankComponent {
-    measureModeService: MeasureModeService;
-
-    imperialSubscription: Subscription;
-    measurePreasureSubscription: Subscription;
-    measureDistanceSubscription: Subscription;
+    private calculatorDataService: CalculatorDataService;
+    private imperialSubscription: Subscription;
+    private measurePreasureSubscription: Subscription;
+    private measureDistanceSubscription: Subscription;
 
     imperialSelected: boolean;
     measurePreasure: string;
@@ -21,8 +20,8 @@ export class TankComponent {
 
     @Input() isResidual: boolean;
     
-    constructor(measureModeService: MeasureModeService) {
-        this.measureModeService = measureModeService;
+    constructor(calculatorDataService: CalculatorDataService) {
+        this.calculatorDataService = calculatorDataService;
 
         this.tank = new TankInfo();
 
@@ -33,13 +32,13 @@ export class TankComponent {
 
     ngOnInit() {
         this.imperialSubscription =
-            this.measureModeService.imperialSelected.subscribe(value => this.imperialSelected = value);
+            this.calculatorDataService.imperialSelected.subscribe(value => this.imperialSelected = value);
 
         this.measurePreasureSubscription =
-            this.measureModeService.measurePreasure.subscribe(value => this.measurePreasure = value);
+            this.calculatorDataService.measurePreasure.subscribe(value => this.measurePreasure = value);
 
         this.measureDistanceSubscription =
-            this.measureModeService.measureDistance.subscribe(value => this.measureDistance = value);
+            this.calculatorDataService.measureDistance.subscribe(value => this.measureDistance = value);
 
         if (this.isResidual) {
             if (this.tank.pressure === -1)
@@ -48,6 +47,8 @@ export class TankComponent {
             if (this.tank.pressure === -1)
                 this.tank.pressure = 3000; 
         }
+
+        this.updatePercents();
     }
 
     ngOnDestroy() {
@@ -64,5 +65,11 @@ export class TankComponent {
             this.tank.gasBlend.helium = 100 - this.tank.gasBlend.oxygen;
 
         this.tank.gasBlend.nitrogen = 100 - (this.tank.gasBlend.oxygen + this.tank.gasBlend.helium);
+
+        if (this.isResidual) {
+            this.calculatorDataService.updateResidual(this.tank);
+        } else {
+            this.calculatorDataService.updateDesiredFill(this.tank);
+        }
     }
 }
