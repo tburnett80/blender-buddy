@@ -1,6 +1,6 @@
 ﻿<div class="form-group">
     <label>Tank Preasure (in {{measurePreasure}})</label>
-    <input class="form-control" [(ngModel)]="tank.pressure" type="number" />
+    <input class="form-control" (change)="updatePercents()" [(ngModel)]="tank.pressure" type="number" />
 </div>
 <div class="form-group">
     <div class="progress">
