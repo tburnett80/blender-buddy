@@ -5,7 +5,9 @@ import { TankInfo } from '../../models/calculator/tankInfo';
 
 @Component({
     selector: 'tank',
-    templateUrl: './tank.component.html'
+    templateUrl: './tank.component.html',
+    styleUrls: ['./tank.component.css']
+
 })
 export class TankComponent {
     private readonly calculatorDataService: CalculatorDataService;

@@ -1,6 +1,30 @@
 ﻿<form>
     <div class="container top-pad-20">
-        <div class="col-sm-4">
+
+        <div class="visible-md visible-lg col-sm-5">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Desired Mix
+                    </div>
+                    <div class="panel-body">
+                        <tank [isResidual]="false"></tank>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Residual Mix
+                    </div>
+                    <div class="panel-body">
+                        <tank [isResidual]="true"></tank>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="visible-md visible-lg col-sm-5">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Measurement System
@@ -41,25 +65,71 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Desired Mix
+        
+        <div class="visible-sm visible-xs col-xs-10">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Desired Mix
+                    </div>
+                    <div class="panel-body">
+                        <tank [isResidual]="false"></tank>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <tank [isResidual]="false"></tank>
+            </div>
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Residual Mix
+                    </div>
+                    <div class="panel-body">
+                        <tank [isResidual]="true"></tank>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        
+        <div class="visible-sm visible-xs col-xs-10">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Residual Mix
+                    Measurement System
                 </div>
                 <div class="panel-body">
-                    <tank [isResidual]="true"></tank>
+                    <div class="form-group">
+                        <label class="radio-inline">
+                            <input type="radio" [checked]="imperialSelected === true" (change)="systemSelectionChange(!imperialSelected)" name="measurement" value="imperial" />Imperial
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" [checked]="imperialSelected === false" (change)="systemSelectionChange(!imperialSelected)" name="measurement" value="metric" />Metric
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Mixing Pressures to Add
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <p>Oxygen<span class="pull-right">{{result.fillSpecs.gasBlend.oxygen}} {{measurePreasure}}</span></p>
+                        <p>Air<span class="pull-right">{{result.topOffGasPressure}} {{measurePreasure}}</span></p>
+                        <p>Helium<span class="pull-right">{{result.fillSpecs.gasBlend.helium}} {{measurePreasure}}</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Oxygen Limits
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <p>Hypoxic Depth<span class="pull-right">{{result.hypoxicDepth}} {{measureDistance}}</span></p>
+                        <p>PP O2 1.4% Depth<span class="pull-right">{{result.pO214Depth}} {{measureDistance}}</span></p>
+                        <p>PP 02 1.6% Depth<span class="pull-right">{{result.pO216Depth}} {{measureDistance}}</span></p>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </form>
