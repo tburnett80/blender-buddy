@@ -2,12 +2,12 @@
 import { Subscription } from 'rxjs/Subscription';
 import { CalculatorDataService } from '../../services/calculator-data.service';
 import { TankInfo } from '../../models/calculator/tankInfo';
+import { Gas } from '../../models/calculator/gas';
 
 @Component({
     selector: 'tank',
     templateUrl: './tank.component.html',
     styleUrls: ['./tank.component.css']
-
 })
 export class TankComponent {
     private readonly calculatorDataService: CalculatorDataService;
@@ -22,10 +22,6 @@ export class TankComponent {
         this.calculatorDataService = calculatorDataService;
 
         this.tank = new TankInfo();
-
-        this.tank.gasBlend.helium = 0;
-        this.tank.gasBlend.oxygen = 21;
-        this.tank.gasBlend.nitrogen = 79;
     }
 
     ngOnInit() {
@@ -39,31 +35,14 @@ export class TankComponent {
             if (this.tank.pressure === -1)
                 this.tank.pressure = 3000; 
         }
-
-        this.updatePercents();
     }
 
     ngOnDestroy() {
         this.measurePreasureSubscription.unsubscribe();
     }
 
-    updatePercents(): void {
-        if (this.tank.gasBlend.oxygen < 0)
-            this.tank.gasBlend.oxygen = 0;
-
-        if (this.tank.gasBlend.nitrogen < 0)
-            this.tank.gasBlend.nitrogen = 0;
-
-        if (this.tank.gasBlend.helium < 0)
-            this.tank.gasBlend.helium = 0;
-
-        if (this.tank.gasBlend.oxygen > 100)
-            this.tank.gasBlend.oxygen = 100;
-
-        if ((this.tank.gasBlend.oxygen + this.tank.gasBlend.helium) > 100)
-            this.tank.gasBlend.helium = 100 - this.tank.gasBlend.oxygen;
-
-        this.tank.gasBlend.nitrogen = 100 - (this.tank.gasBlend.oxygen + this.tank.gasBlend.helium);
+    updateTank(gas: Gas): void {
+        this.tank.gasBlend = gas;
 
         if (this.isResidual) {
             this.calculatorDataService.updateResidual(this.tank);

@@ -27,6 +27,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\calculator\calculator.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\calculator\calculator.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\gas\gas.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\extensions\numberExtensions.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\calculator\calculationRequest.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\calculator\calculationResult.ts" />

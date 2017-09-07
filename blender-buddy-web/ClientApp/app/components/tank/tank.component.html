@@ -1,39 +1,8 @@
 ﻿<div class="form-group">
     <label>Tank Preasure (in {{measurePreasure}})</label>
-    <input class="form-control tnk-npt" (change)="updatePercents()" [(ngModel)]="tank.pressure" type="number" />
+    <input class="form-control tnk-npt" [(ngModel)]="tank.pressure" type="number" />
 </div>
-<div class="form-group">
-    <div class="progress">
-        <div class="progress-bar progress-bar-success o2-bar" role="progressbar" [style.width]="tank.gasBlend.oxygen + '%'">O2</div>
-        <div class="progress-bar progress-bar-warning he-bar" role="progressbar" [style.width]="tank.gasBlend.helium + '%'">He</div>
-        <div class="progress-bar n2-bar" role="progressbar" [style.width]="tank.gasBlend.nitrogen + '%'">N2</div>
-    </div>
+<div class="col-sm-12">
+    <gas (gasUpdated)="updateTank($event)"></gas>
 </div>
-<div class="row hidden-xs">
-    <div class="form-group col-sm-4">
-        <label>Oxygen %</label>
-        <input class="form-control o2-npt" max="100" [(ngModel)]="tank.gasBlend.oxygen" (change)="updatePercents()" type="number" />
-    </div>
-    <div class="form-group col-sm-4">
-        <label>Helium %</label>
-        <input class="form-control he-npt" max="100" [(ngModel)]="tank.gasBlend.helium" (change)="updatePercents()" type="number" />
-    </div>
-    <div class="form-group col-sm-4">
-        <label>Nitrogen %</label>
-        <input class="form-control n2-npt" max="100" [(ngModel)]="tank.gasBlend.nitrogen" (change)="updatePercents()" type="number" />
-    </div>
-</div>
-<div class="row visible-xs">
-    <div class="form-group col-xs-4">
-        <label>O2 %</label>
-        <input class="form-control o2-npt" max="100" [(ngModel)]="tank.gasBlend.oxygen" (change)="updatePercents()" type="number"/>
-    </div>
-    <div class="form-group col-xs-4">
-        <label>He %</label>
-        <input class="form-control he-npt" max="100" [(ngModel)]="tank.gasBlend.helium" (change)="updatePercents()" type="number"/>
-    </div>
-    <div class="form-group col-xs-4">
-        <label>N2 %</label>
-        <input class="form-control n2-npt" max="100" [(ngModel)]="tank.gasBlend.nitrogen" (change)="updatePercents()" type="number"/>
-    </div>
-</div>
+

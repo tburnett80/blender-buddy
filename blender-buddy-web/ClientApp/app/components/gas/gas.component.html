@@ -1,0 +1,21 @@
+﻿<div class="form-group row">
+    <div class="progress">
+        <div class="progress-bar progress-bar-success o2-bar" role="progressbar" [style.width]="gas.oxygen + '%'">O2</div>
+        <div class="progress-bar progress-bar-warning he-bar" role="progressbar" [style.width]="gas.helium + '%'">He</div>
+        <div class="progress-bar n2-bar" role="progressbar" [style.width]="gas.nitrogen + '%'">N2</div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-4">
+        <label>Oxygen %</label>
+        <input class="form-control o2-npt" max="100" [(ngModel)]="gas.oxygen" (change)="updatePercents()" type="number" />
+    </div>
+    <div class="form-group col-sm-4">
+        <label>Helium %</label>
+        <input class="form-control he-npt" max="100" [(ngModel)]="gas.helium" (change)="updatePercents()" type="number" />
+    </div>
+    <div class="form-group col-sm-4">
+        <label>Nitrogen %</label>
+        <input class="form-control n2-npt" max="100" [(ngModel)]="gas.nitrogen" (change)="updatePercents()" type="number" />
+    </div>
+</div>

@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
+import { GasComponent } from './components/gas/gas.component';
 import { TankComponent } from './components/tank/tank.component';
 import { CalculatorComponent } from './components/calculator/calculator.component';
 
@@ -13,6 +14,7 @@ import { CalculatorComponent } from './components/calculator/calculator.componen
     declarations: [
         AppComponent,
         NavMenuComponent,
+        GasComponent,
         TankComponent,
         CalculatorComponent,
         HomeComponent

@@ -1,15 +1,1 @@
-﻿input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-}
-
-/*.form-inline .form-group {
-    margin-left: 0;
-    margin-right: 0;
-}
-    .form-inline .form-group .form-control {
-        min-width: 100%;
-        max-width: 100%;
-    }*/
+﻿
