@@ -1,6 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from "rxjs/Observable";
 import { Subscription } from 'rxjs/Subscription';
 import { MeasureMode } from '../models/calculator/measureMode';
 import { CalculationRequest } from '../models/calculator/calculationRequest';

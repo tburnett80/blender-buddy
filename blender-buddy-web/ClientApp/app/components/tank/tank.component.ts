@@ -8,14 +8,10 @@ import { TankInfo } from '../../models/calculator/tankInfo';
     templateUrl: './tank.component.html'
 })
 export class TankComponent {
-    private calculatorDataService: CalculatorDataService;
-    private imperialSubscription: Subscription;
+    private readonly calculatorDataService: CalculatorDataService;
     private measurePreasureSubscription: Subscription;
-    private measureDistanceSubscription: Subscription;
 
-    imperialSelected: boolean;
     measurePreasure: string;
-    measureDistance: string;
     tank: TankInfo;
 
     @Input() isResidual: boolean;
@@ -31,14 +27,8 @@ export class TankComponent {
     }
 
     ngOnInit() {
-        this.imperialSubscription =
-            this.calculatorDataService.imperialSelected.subscribe(value => this.imperialSelected = value);
-
         this.measurePreasureSubscription =
             this.calculatorDataService.measurePreasure.subscribe(value => this.measurePreasure = value);
-
-        this.measureDistanceSubscription =
-            this.calculatorDataService.measureDistance.subscribe(value => this.measureDistance = value);
 
         if (this.isResidual) {
             if (this.tank.pressure === -1)
@@ -52,12 +42,19 @@ export class TankComponent {
     }
 
     ngOnDestroy() {
-        this.imperialSubscription.unsubscribe();
         this.measurePreasureSubscription.unsubscribe();
-        this.measureDistanceSubscription.unsubscribe();
     }
 
     updatePercents(): void {
+        if (this.tank.gasBlend.oxygen < 0)
+            this.tank.gasBlend.oxygen = 0;
+
+        if (this.tank.gasBlend.nitrogen < 0)
+            this.tank.gasBlend.nitrogen = 0;
+
+        if (this.tank.gasBlend.helium < 0)
+            this.tank.gasBlend.helium = 0;
+
         if (this.tank.gasBlend.oxygen > 100)
             this.tank.gasBlend.oxygen = 100;
 

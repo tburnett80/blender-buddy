@@ -1,5 +1,4 @@
 ﻿/// <reference path="../../../node_modules/@types/jasmine/index.d.ts" />
-
 import { BlendCalculatorService } from './blendCalculator.service';
 import { CalculationRequest } from '../models/calculator/calculationRequest';
 import { MeasureMode } from '../models/calculator/measureMode';

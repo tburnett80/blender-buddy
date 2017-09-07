@@ -22,15 +22,13 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\components\calculator\calculator.component.spec.ts" />
-    <None Remove="ClientApp\app\components\tank\tank.component.spect.ts" />
     <None Remove="ClientApp\app\components\tank\tank.component.ts" />
-    <None Remove="ClientApp\app\services\measure-system.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\calculator\calculator.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\calculator\calculator.component.ts" />
-    <TypeScriptCompile Include="ClientApp\app\components\tank\tank.component.spect.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\tank\tank.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\tank\tank.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\extensions\numberExtensions.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\calculator\calculationRequest.ts" />
@@ -42,7 +40,6 @@
     <TypeScriptCompile Include="ClientApp\app\services\blendCalculator.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\blendCalculator.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\calculator-data.service.ts" />
-    <TypeScriptCompile Include="ClientApp\app\services\measure-system.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
