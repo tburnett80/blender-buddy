@@ -1,10 +1,10 @@
 ﻿import { Component } from '@angular/core';
-import { Http } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
 import { CalculationRequest } from '../../models/calculator/calculationRequest';
 import { CalculationResult } from '../../models/calculator/calculationResult';
 import { BlendCalculatorService } from '../../services/blendCalculator.service';
 import { CalculatorDataService } from '../../services/calculator-data.service';
+import { Gas } from '../../models/calculator/gas';
 
 @Component({
     selector: 'calculator',
