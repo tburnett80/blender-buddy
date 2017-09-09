@@ -1,5 +1,4 @@
 ﻿import { Injectable } from '@angular/core';
-
 import { MeasureMode } from '../models/calculator/measureMode';
 import { TopOffGas } from '../models/calculator/topOffGas';
 import { Gas } from '../models/calculator/gas';

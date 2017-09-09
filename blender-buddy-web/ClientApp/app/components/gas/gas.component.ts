@@ -7,7 +7,7 @@ import { Gas } from '../../models/calculator/gas';
     styleUrls: ['./gas.component.css']
 })
 export class GasComponent {
-    private gas: Gas;
+    gas: Gas;
 
     @Output()
     gasUpdated: EventEmitter<Gas> = new EventEmitter<Gas>();
