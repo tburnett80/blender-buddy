@@ -21,7 +21,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\mixpicker\mixpicker.component.spec.ts" />
+    <None Remove="ClientApp\app\components\mixpicker\mixpicker.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\app\models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\mixpicker\mixpicker.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\mixpicker\mixpicker.component.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

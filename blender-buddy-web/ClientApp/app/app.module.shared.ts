@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { GasComponent } from './components/gas/gas.component';
 import { TankComponent } from './components/tank/tank.component';
 import { CalculatorComponent } from './components/calculator/calculator.component';
+import { MixPickerComponent } from './components/mixpicker/mixpicker.component';
 
 @NgModule({
     declarations: [
@@ -17,6 +18,7 @@ import { CalculatorComponent } from './components/calculator/calculator.componen
         GasComponent,
         TankComponent,
         CalculatorComponent,
+        MixPickerComponent,
         HomeComponent
     ],
     imports: [
@@ -27,6 +29,7 @@ import { CalculatorComponent } from './components/calculator/calculator.componen
             { path: '', redirectTo: 'calculator', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'calculator', component: CalculatorComponent },
+            { path: 'mix-picker', component: MixPickerComponent },
             { path: '**', redirectTo: 'calculator' }
         ])
     ]
