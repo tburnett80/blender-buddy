@@ -46,7 +46,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <select class="form-control" (change)="updateFillGas(undefined)" [(ngModel)]="selectedGas" name="topOffGasses">
+                        <select class="form-control" (change)="updateFillGasSelection()" [(ngModel)]="selectedGas" name="topOffGasses">
                             <option *ngFor="let t of topOffs" [value]="t.value">{{t.title}}</option>
                         </select>
                     </div>
