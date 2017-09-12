@@ -9,8 +9,8 @@ import '../extensions/numberExtensions'
 @Injectable()
 export class BlendCalculatorService {
     static readonly airO2Percent = 0.21;
-    static readonly ean32_O2Percent = 0.32;
-    static readonly ean36_O2Percent = 0.36;
+    static readonly EANx32_O2Percent = 0.32;
+    static readonly EANx36_O2Percent = 0.36;
     static readonly minPpO2 = 0.18;
 
     public calculateFill(request: CalculationRequest): CalculationResult {
@@ -88,10 +88,10 @@ export class BlendCalculatorService {
         switch (gasType) {
         case TopOffGas.Air:
                 return BlendCalculatorService.airO2Percent;
-        case TopOffGas.Ean32:
-                return BlendCalculatorService.ean32_O2Percent;
-        case TopOffGas.Ean36:
-                return BlendCalculatorService.ean36_O2Percent;
+        case TopOffGas.EANx32:
+                return BlendCalculatorService.EANx32_O2Percent;
+        case TopOffGas.EANx36:
+                return BlendCalculatorService.EANx36_O2Percent;
         case TopOffGas.Custom:
             if (!gas)
                 throw new RangeError("Could not determin Top off Oxygen. Empty tank and start over.")
@@ -105,10 +105,10 @@ export class BlendCalculatorService {
         switch (gasType) {
         case TopOffGas.Air:
                 return 1 - BlendCalculatorService.airO2Percent;
-        case TopOffGas.Ean32:
-                return 1 - BlendCalculatorService.ean32_O2Percent;
-        case TopOffGas.Ean36:
-                return 1 - BlendCalculatorService.ean36_O2Percent;
+        case TopOffGas.EANx32:
+                return 1 - BlendCalculatorService.EANx32_O2Percent;
+        case TopOffGas.EANx36:
+                return 1 - BlendCalculatorService.EANx36_O2Percent;
         case TopOffGas.Custom:
             if (!gas)
                 throw new RangeError("Could not determin Top off Nitrogen. Empty tank and start over.")

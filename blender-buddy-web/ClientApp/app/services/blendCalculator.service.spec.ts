@@ -179,14 +179,14 @@ describe('Blend Calculator', () => {
             const request = new CalculationRequest();
             request.fillSpecs.pressure = 2400;
             request.fillSpecs.gasBlend.oxygen = 36;
-            request.topOffGasType = TopOffGas.Ean32;
+            request.topOffGasType = TopOffGas.EANx32;
 
             //Act
             const result = service.calculateFill(request);
 
             //Assert
             expect(result.system).toEqual(MeasureMode.Imperial);
-            expect(result.topOffGasType).toEqual(TopOffGas.Ean32);
+            expect(result.topOffGasType).toEqual(TopOffGas.EANx32);
             expect(result.topOffGasPressure).toEqual(2258.8);
             expect(result.fillSpecs.gasBlend.oxygen).toBe(141.2);
             expect(result.fillSpecs.gasBlend.helium).toEqual(0);
@@ -204,14 +204,14 @@ describe('Blend Calculator', () => {
             const request = new CalculationRequest();
             request.fillSpecs.pressure = 3000;
             request.fillSpecs.gasBlend.oxygen = 40;
-            request.topOffGasType = TopOffGas.Ean36;
+            request.topOffGasType = TopOffGas.EANx36;
 
             //Act
             const result = service.calculateFill(request);
 
             //Assert
             expect(result.system).toEqual(MeasureMode.Imperial);
-            expect(result.topOffGasType).toEqual(TopOffGas.Ean36);
+            expect(result.topOffGasType).toEqual(TopOffGas.EANx36);
             expect(result.topOffGasPressure).toEqual(2812.5);
             expect(result.fillSpecs.gasBlend.oxygen).toBe(187.5);
             expect(result.fillSpecs.gasBlend.helium).toEqual(0);
