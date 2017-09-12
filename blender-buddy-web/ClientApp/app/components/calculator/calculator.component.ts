@@ -34,6 +34,7 @@ export class CalculatorComponent {
         this.calculatorDataService = calculatorDataService;
         this.systemSelectionChange(true);
         this.topOffs = this.enumSelector(TopOffGas);
+        this.selectedGas = 0;
     }
 
     ngOnInit() {
@@ -49,7 +50,7 @@ export class CalculatorComponent {
         this.requestSubscription =
             this.calculatorDataService.requestObservable.subscribe(value => this.runCalculation(value));
 
-        this.selectedGasText = TopOffGas[0];
+        this.selectedGasText = TopOffGas[this.selectedGas];
     }
 
     ngOnDestroy() {
