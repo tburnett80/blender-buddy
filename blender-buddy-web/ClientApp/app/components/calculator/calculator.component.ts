@@ -70,11 +70,6 @@ export class CalculatorComponent {
         this.calculatorDataService.updateTopOffGas(this.selectedGas, gas);
     }
 
-    updateFillGasSelection(): void {
-        this.selectedGasText = TopOffGas[this.selectedGas];
-        this.calculatorDataService.updateTopOffGas(this.selectedGas, new Gas());
-    }
-
     private runCalculation(request: CalculationRequest): void {
         this.result = this.blendCalculator.calculateFill(request);
     }

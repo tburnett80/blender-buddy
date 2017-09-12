@@ -1,5 +1,5 @@
 ﻿<form>
-    <div class="container top-pad-20" (gasUpdated)="caughtEvent($event)">
+    <div class="container top-pad-20">
 
         <div class="col-sm-5">
             <div class="row">
@@ -46,12 +46,12 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <select class="form-control" (change)="updateFillGasSelection()" [(ngModel)]="selectedGas" name="topOffGasses">
+                        <select class="form-control" (change)="updateFillGas()" [(ngModel)]="selectedGas" name="topOffGasses">
                             <option *ngFor="let t of topOffs" [value]="t.value">{{t.title}}</option>
                         </select>
                     </div>
                     <div *ngIf="selectedGas == 3">
-                        
+                        <gas (gasUpdated)="updateFillGas($event)"></gas>
                     </div>
                 </div>
             </div>
