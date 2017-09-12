@@ -56,6 +56,16 @@ export class BlendCalculatorService {
         return result;
     }
 
+    public calculateOptimalMix(distance: number, system: MeasureMode = MeasureMode.Imperial, ppo2: number = 1.4): number {
+        return (ppo2 / BlendCalculatorService.calculateAtaAbs(distance, system)).round(2);
+    }
+
+    private static calculateAtaAbs(distance: number, system: MeasureMode): number {
+        return system === MeasureMode.Imperial
+            ? (distance / 33) + 1
+            : (distance / 10) + 1
+    }
+
     private static calculateFillPercent(desiredGasPercent: number, desiredFillPressure: number, residualGasPercent = 0, residualPressure = 0): number {
         let desiredPercentOfTank = desiredGasPercent * desiredFillPressure;
         let residualMixOfTank = residualGasPercent * residualPressure;
