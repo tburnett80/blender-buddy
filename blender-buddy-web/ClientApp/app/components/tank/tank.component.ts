@@ -41,8 +41,9 @@ export class TankComponent {
         this.measurePreasureSubscription.unsubscribe();
     }
 
-    updateTank(gas: Gas): void {
-        this.tank.gasBlend = gas;
+    updateTank(gas?: Gas): void {
+        if(gas)
+            this.tank.gasBlend = gas;
 
         if (this.isResidual) {
             this.calculatorDataService.updateResidual(this.tank);

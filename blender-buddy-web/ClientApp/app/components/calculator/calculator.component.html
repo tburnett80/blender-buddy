@@ -42,12 +42,27 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
+                    Top Off Gas
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <select class="form-control" (change)="updateFillGas()" [(ngModel)]="selectedGas" name="topOffGasses">
+                            <option *ngFor="let t of topOffs" [value]="t.value">{{t.title}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="selectedGas == 3">
+                        <gas (gasUpdated)="updateFillGas($event)"></gas>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
                     Mixing Pressures to Add
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
                         <p>Oxygen<span class="pull-right">{{result.fillSpecs.gasBlend.oxygen}} {{measurePreasure}}</span></p>
-                        <p>Air<span class="pull-right">{{result.topOffGasPressure}} {{measurePreasure}}</span></p>
+                        <p>{{selectedGasText}}<span class="pull-right">{{result.topOffGasPressure}} {{measurePreasure}}</span></p>
                         <p>Helium<span class="pull-right">{{result.fillSpecs.gasBlend.helium}} {{measurePreasure}}</span></p>
                     </div>
                 </div>

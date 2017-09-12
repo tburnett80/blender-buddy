@@ -1,6 +1,6 @@
 ﻿<div class="form-group">
     <label>Tank Preasure (in {{measurePreasure}})</label>
-    <input class="form-control tnk-npt" [(ngModel)]="tank.pressure" type="number" />
+    <input class="form-control tnk-npt" (change)="updateTank()" [(ngModel)]="tank.pressure" type="number" />
 </div>
 <div class="col-sm-12">
     <gas (gasUpdated)="updateTank($event)"></gas>

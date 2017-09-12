@@ -5,6 +5,7 @@ import { CalculationResult } from '../../models/calculator/calculationResult';
 import { BlendCalculatorService } from '../../services/blendCalculator.service';
 import { CalculatorDataService } from '../../services/calculator-data.service';
 import { Gas } from '../../models/calculator/gas';
+import { TopOffGas } from '../../models/calculator/topOffGas';
 
 @Component({
     selector: 'calculator',
@@ -24,11 +25,15 @@ export class CalculatorComponent {
     measurePreasure: string;
     measureDistance: string;
     result: CalculationResult;
+    topOffs: any;
+    selectedGas: number;
+    selectedGasText: string;
 
     constructor(blendCalculator: BlendCalculatorService, calculatorDataService: CalculatorDataService) {
         this.blendCalculator = blendCalculator;
         this.calculatorDataService = calculatorDataService;
         this.systemSelectionChange(true);
+        this.topOffs = this.enumSelector(TopOffGas);
     }
 
     ngOnInit() {
@@ -43,6 +48,8 @@ export class CalculatorComponent {
 
         this.requestSubscription =
             this.calculatorDataService.requestObservable.subscribe(value => this.runCalculation(value));
+
+        this.selectedGasText = TopOffGas[0];
     }
 
     ngOnDestroy() {
@@ -56,9 +63,20 @@ export class CalculatorComponent {
         this.calculatorDataService.updateSystemSelection(entry);
     }
 
+    updateFillGas(gas?: Gas): void {
+        if (!gas)
+            gas = new Gas();
+        this.selectedGasText = TopOffGas[this.selectedGas];
+        this.calculatorDataService.updateTopOffGas(this.selectedGas, gas);
+    }
+
     private runCalculation(request: CalculationRequest): void {
         this.result = this.blendCalculator.calculateFill(request);
+    }
 
-        console.log('result: ', this.result);
+    private enumSelector(definition: any): any {
+        return Object.keys(definition)
+            .filter(key => isNaN(+key))
+            .map(key => ({ value: definition[key], title: key }));
     }
 }

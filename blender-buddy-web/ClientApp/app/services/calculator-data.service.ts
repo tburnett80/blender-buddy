@@ -3,6 +3,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subscription } from 'rxjs/Subscription';
 import { MeasureMode } from '../models/calculator/measureMode';
 import { CalculationRequest } from '../models/calculator/calculationRequest';
+import { Gas } from '../models/calculator/gas';
+import { TopOffGas } from '../models/calculator/topOffGas';
 import { TankInfo } from '../models/calculator/tankInfo';
 
 @Injectable()
@@ -48,5 +50,11 @@ export class CalculatorDataService {
 
     public updateRequest(request: CalculationRequest): void {
         this.calculationRequestSource.next(request);
+    }
+
+    public updateTopOffGas(type: TopOffGas, gas: Gas): void {
+        this.request.topOffGasDetails = gas;
+        this.request.topOffGasType = Number(type); //Strange but there seems to be a bug in enums, casting to number fixed
+        this.calculationRequestSource.next(this.request);
     }
 }
