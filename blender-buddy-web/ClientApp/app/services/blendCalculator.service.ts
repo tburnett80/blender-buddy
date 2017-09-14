@@ -33,9 +33,12 @@ export class BlendCalculatorService {
 
         let heliumFillPressure = heliumFillPercent * tankPressure;
 
+        let topOffO2 = BlendCalculatorService.determinTopOffOxygen(request.topOffGasType, request.topOffGasDetails); //should be 0.21
+        let topOffN2 = BlendCalculatorService.determinTopOffNitrogen(request.topOffGasType, request.topOffGasDetails); //should be 0.79
+
         let oxygenFillPressure = BlendCalculatorService.calculateOxygenFillPressure(oxygenFillPercent,
-            BlendCalculatorService.determinTopOffOxygen(request.topOffGasType, request.topOffGasDetails), heliumFillPercent,
-            BlendCalculatorService.determinTopOffNitrogen(request.topOffGasType, request.topOffGasDetails),
+            topOffO2, heliumFillPercent,
+            topOffN2,
             tankPressure - heliumFillPressure);
 
         let mod = BlendCalculatorService.calculateMaxDepth(request.fillSpecs.gasBlend.oxygen.toPercent(), 1.4, request.system).round();
@@ -75,7 +78,7 @@ export class BlendCalculatorService {
     }
 
     private static calculateOxygenFillPressure(oxygenPercent: number, topOffOxygenPercent: number, heliumPercent: number, nitrogenPercent: number, tankPressure: number): number {
-        return (oxygenPercent / (1 - heliumPercent) - topOffOxygenPercent) / nitrogenPercent * tankPressure;
+        return ((oxygenPercent / (1 - heliumPercent) - topOffOxygenPercent) / nitrogenPercent) * tankPressure;
     }
 
     private static calculateMaxDepth(o2Percent: number, o2PartialPreasureLimit: number, system: MeasureMode): number {
