@@ -21,6 +21,9 @@ export class BlendCalculatorService {
         if (request.fillSpecs.gasBlend.oxygen.toPercent() < 0.18)
             result.warnings.push('Travel Gas required for this blend');
 
+        if (request.residual.pressure < 0)
+            request.residual.pressure = 0;
+
         let tankPressure = request.fillSpecs.pressure - request.residual.pressure;
 
         let oxygenFillPercent = BlendCalculatorService.calculateFillPercent(request.fillSpecs.gasBlend.oxygen.toPercent(),
