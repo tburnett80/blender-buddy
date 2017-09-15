@@ -20,7 +20,7 @@ describe('Blend Calculator', () => {
         const result = service.calculateOptimalMix(125);
 
         //Assert
-        expect(result).toEqual(0.29);
+        expect(result).toEqual(29);
     });
 
     it('should return optimal mix for 38 meeters @ppO2 of 1.4', () => {
@@ -28,7 +28,7 @@ describe('Blend Calculator', () => {
         const result = service.calculateOptimalMix(38, MeasureMode.Metric);
 
         //Assert
-        expect(result).toEqual(0.29);
+        expect(result).toEqual(29);
     });
 
     it('should return a valid EANx Blend starting with an empty tank, imperial', () => {
