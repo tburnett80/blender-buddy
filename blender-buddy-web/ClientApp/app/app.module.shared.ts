@@ -10,6 +10,7 @@ import { GasComponent } from './components/gas/gas.component';
 import { TankComponent } from './components/tank/tank.component';
 import { CalculatorComponent } from './components/calculator/calculator.component';
 import { MixPickerComponent } from './components/mixpicker/mixpicker.component';
+import { PartialPressureComponent } from './components/partialpressure/partialpressure.component';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { MixPickerComponent } from './components/mixpicker/mixpicker.component';
         TankComponent,
         CalculatorComponent,
         MixPickerComponent,
+        PartialPressureComponent,
         HomeComponent
     ],
     imports: [
@@ -30,6 +32,7 @@ import { MixPickerComponent } from './components/mixpicker/mixpicker.component';
             { path: 'home', component: HomeComponent },
             { path: 'calculator', component: CalculatorComponent },
             { path: 'mix-picker', component: MixPickerComponent },
+            { path: 'partial-pressure', component: PartialPressureComponent },
             { path: '**', redirectTo: 'calculator' }
         ])
     ]
