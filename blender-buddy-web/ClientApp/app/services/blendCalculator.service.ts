@@ -4,6 +4,8 @@ import { TopOffGas } from '../models/calculator/topOffGas';
 import { Gas } from '../models/calculator/gas';
 import { CalculationRequest } from '../models/calculator/calculationRequest';
 import { CalculationResult } from '../models/calculator/calculationResult';
+import { PartialPressureRequest } from '../models/calculator/partialPressureRequest';
+import { PartialPressureResult } from '../models/calculator/partialPressureResult';
 import '../extensions/numberExtensions'
 
 @Injectable()
@@ -64,6 +66,17 @@ export class BlendCalculatorService {
 
     public calculateOptimalMix(distance: number, system: MeasureMode = MeasureMode.Imperial, ppo2: number = 1.4): number {
         return ((ppo2 / BlendCalculatorService.calculateAtaAbs(distance, system)).round(2) * 100).round(0);
+    }
+
+    public calculatePartialPressure(request: PartialPressureRequest): PartialPressureResult {
+        let ata = BlendCalculatorService.calculateAtaAbs(request.depth, request.system);
+        let result = new PartialPressureResult();
+
+        result.PpO2 = (ata * request.gas.oxygen.toPercent()).round();
+        result.PpN2 = (ata * request.gas.nitrogen.toPercent()).round();
+        result.PpHe = (ata * request.gas.helium.toPercent()).round();
+
+        return result;
     }
 
     private static calculateAtaAbs(distance: number, system: MeasureMode): number {

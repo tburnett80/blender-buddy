@@ -22,14 +22,14 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\components\partialpressure\partialpressure.component.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\app\models\" />
+    <None Remove="ClientApp\app\models\calculator\partialPressureRequest.ts" />
+    <None Remove="ClientApp\app\models\calculator\partialPressureResult.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\partialpressure\partialpressure.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\calculator\partialPressureRequest.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\calculator\partialPressureResult.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
