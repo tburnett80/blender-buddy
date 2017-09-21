@@ -21,12 +21,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\endead\endead.component.ts" />
     <None Remove="ClientApp\app\components\partialpressure\partialpressure.component.ts" />
     <None Remove="ClientApp\app\models\calculator\partialPressureRequest.ts" />
     <None Remove="ClientApp\app\models\calculator\partialPressureResult.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\endead\endead.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\partialpressure\partialpressure.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\calculator\partialPressureRequest.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\calculator\partialPressureResult.ts" />
