@@ -1,9 +1,0 @@
-{
-  "name": "BlenderBuddy",
-  "version": "1.0.0",
-  "private": true,
-  "dependencies": {},
-  "devDependencies": {
-    "definitely-typed-jasmine": "^1.0.0"
-  }
-}
