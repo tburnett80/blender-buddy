@@ -11,6 +11,8 @@ import { TankComponent } from './components/tank/tank.component';
 import { CalculatorComponent } from './components/calculator/calculator.component';
 import { MixPickerComponent } from './components/mixpicker/mixpicker.component';
 import { PartialPressureComponent } from './components/partialpressure/partialpressure.component';
+import { EadComponent } from './components/ead/ead.component';
+import { EndComponent } from './components/end/end.component';
 
 @NgModule({
     declarations: [
@@ -21,6 +23,8 @@ import { PartialPressureComponent } from './components/partialpressure/partialpr
         CalculatorComponent,
         MixPickerComponent,
         PartialPressureComponent,
+        EadComponent,
+        EndComponent,
         HomeComponent
     ],
     imports: [
@@ -33,6 +37,8 @@ import { PartialPressureComponent } from './components/partialpressure/partialpr
             { path: 'calculator', component: CalculatorComponent },
             { path: 'mix-picker', component: MixPickerComponent },
             { path: 'partial-pressure', component: PartialPressureComponent },
+            { path: 'ead', component: EadComponent },
+            { path: 'end', component: EndComponent },
             { path: '**', redirectTo: 'calculator' }
         ])
     ]
