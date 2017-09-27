@@ -83,14 +83,14 @@ export class BlendCalculatorService {
         //END Imperial = [(1 - helium percent ie .45 for 45%) * (depth + 33)] - 33   
         //END Metric =   [(1 - helium percent ie .45 for 45%) * (depth + 10)] - 10
         const depthConst = system === MeasureMode.Imperial ? 33 : 10;
-        return ((1 - heliumPercent) * (depth + depthConst)) - depthConst;
+        return (((1 - heliumPercent) * (depth + depthConst)) - depthConst).round(0);
     }
 
     public calculateEad(oxygenPercent: number, depth: number, system: MeasureMode = MeasureMode.Imperial): number {
         //EAD Imperial = ([(1 - oxygenPercent) * (depth + 33)] / 0.79) - 33
         //EAD Metric = ([(1 - oxygenPercent) * (depth + 10)] / 0.79) - 10
         const depthConst = system === MeasureMode.Imperial ? 33 : 10;
-        return (((1 - oxygenPercent) * (depth + depthConst)) / 0.79) - depthConst;
+        return ((((1 - oxygenPercent) * (depth + depthConst)) / 0.79) - depthConst).round(0);
     }
 
     private static calculateAtaAbs(distance: number, system: MeasureMode): number {

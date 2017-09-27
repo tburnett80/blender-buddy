@@ -11,7 +11,7 @@ import { PartialPressureResult } from '../../models/calculator/partialPressureRe
     styleUrls: ['./partialpressure.component.css']
 })
 export class PartialPressureComponent {
-    private service: BlendCalculatorService;
+    private readonly service: BlendCalculatorService;
     ppImperialSelected: boolean;
     ppMeasurement: string;
     depth: number;

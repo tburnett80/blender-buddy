@@ -14,12 +14,18 @@
                             <input type="radio" [checked]="endImperialSelected === false" (change)="endSystemSelectionChange(!endImperialSelected)" name="endmeasurement" value="false" />Metric
                         </label>
                     </div>
-                    <div class="form-group">
-                        <label>Depth in {{endMeasurement}}</label>
-                        <input class="form-control" [(ngModel)]="depth" (change)="endUpdateDepth()" type="number" />
+                    <div class="row">
+                        <div class="form-group col-sm-5">
+                            <label>Depth in {{endMeasurement}}</label>
+                            <input class="form-control" [(ngModel)]="endDepth" (change)="endUpdateDepth()" type="number" />
+                        </div>
+                        <div class="form-group col-sm-5">
+                            <label>Helium Percent</label>
+                            <input class="form-control" [(ngModel)]="endHeliumPercent" (change)="endUpdateHelium()" max="100" type="number" />
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label>The best EANx Mix for your depth would be: {{mix}}</label>
+                        <label>The END (Equivilant Narcotic Depth) would be: {{endValue}}</label>
                     </div>
                 </div>
             </div>
