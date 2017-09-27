@@ -8,15 +8,15 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="radio-inline">
-                            <input type="radio" [checked]="imperialSelected === true" (change)="systemSelectionChange(!imperialSelected)" name="measurement" value="true" />Imperial
+                            <input type="radio" [checked]="eadImperialSelected === true" (change)="eadSystemSelectionChange(!eadImperialSelected)" name="eadmeasurement" value="true" />Imperial
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" [checked]="imperialSelected === false" (change)="systemSelectionChange(!imperialSelected)" name="measurement" value="false" />Metric
+                            <input type="radio" [checked]="eadImperialSelected === false" (change)="eadSystemSelectionChange(!eadImperialSelected)" name="eadmeasurement" value="false" />Metric
                         </label>
                     </div>
                     <div class="form-group">
-                        <label>Depth in {{measurement}}</label>
-                        <input class="form-control" [(ngModel)]="depth" (change)="updateDepth()" type="number" />
+                        <label>Depth in {{eadMeasurement}}</label>
+                        <input class="form-control" [(ngModel)]="depth" (change)="eadUpdateDepth()" type="number" />
                     </div>
                     <div class="form-group">
                         <label>The best EANx Mix for your depth would be: {{mix}}</label>

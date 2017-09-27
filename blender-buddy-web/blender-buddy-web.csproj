@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\misccalcs\misccalcs.component.ts" />
     <None Remove="ClientApp\app\components\partialpressure\partialpressure.component.ts" />
     <None Remove="ClientApp\app\models\calculator\partialPressureRequest.ts" />
     <None Remove="ClientApp\app\models\calculator\partialPressureResult.ts" />
@@ -28,6 +29,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\end\end.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\misccalcs\misccalcs.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\partialpressure\partialpressure.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\calculator\partialPressureRequest.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\calculator\partialPressureResult.ts" />

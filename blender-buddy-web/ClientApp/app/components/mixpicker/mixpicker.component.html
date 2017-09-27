@@ -1,26 +1,24 @@
 ﻿<div class="container top-pad-20">
     <div class="col-sm-5">
-        <div class="row">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Select the best EANx mix based on depth
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Select the best EANx mix based on depth
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" [checked]="mixImperialSelected === true" (change)="mixSystemSelectionChange(!mixImperialSelected)" name="mixmeasurement" value="true" />Imperial
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" [checked]="mixImperialSelected === false" (change)="mixSystemSelectionChange(!mixImperialSelected)" name="mixmeasurement" value="false" />Metric
+                    </label>
                 </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label class="radio-inline">
-                            <input type="radio" [checked]="imperialSelected === true" (change)="systemSelectionChange(!imperialSelected)" name="measurement" value="true" />Imperial
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" [checked]="imperialSelected === false" (change)="systemSelectionChange(!imperialSelected)" name="measurement" value="false" />Metric
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>Depth in {{measurement}}</label>
-                        <input class="form-control" [(ngModel)]="depth" (change)="updateDepth()" type="number" />
-                    </div>
-                    <div class="form-group">
-                        <label>The best EANx Mix for your depth would be: {{mix}}</label>
-                    </div>
+                <div class="form-group">
+                    <label>Depth in {{mixMeasurement}}</label>
+                    <input class="form-control" [(ngModel)]="depth" (change)="updateDepth()" type="number" />
+                </div>
+                <div class="form-group">
+                    <label>The best EANx Mix for your depth would be: {{mix}}</label>
                 </div>
             </div>
         </div>

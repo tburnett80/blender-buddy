@@ -9,8 +9,8 @@ import { MeasureMode } from '../../models/calculator/measureMode';
 })
 export class MixPickerComponent {
     private readonly service: BlendCalculatorService;
-    imperialSelected: boolean;
-    measurement: string;
+    mixImperialSelected: boolean;
+    mixMeasurement: string;
     depth: number;
     mix: string;
 
@@ -21,12 +21,12 @@ export class MixPickerComponent {
     }
 
     ngOnInit() {
-        this.systemSelectionChange(true);
+        this.mixSystemSelectionChange(true);
     }
 
-    systemSelectionChange(value: boolean): void {
-        this.imperialSelected = value;
-        this.measurement = this.imperialSelected ? 'feet' : 'meeters';
+    mixSystemSelectionChange(value: boolean): void {
+        this.mixImperialSelected = value;
+        this.mixMeasurement = this.mixImperialSelected ? 'feet' : 'meeters';
         this.updateDepth();
     }
 
@@ -37,7 +37,7 @@ export class MixPickerComponent {
         }
 
         const result = this.service.calculateOptimalMix(this.depth,
-            this.imperialSelected ? MeasureMode.Imperial : MeasureMode.Metric);
+            this.mixImperialSelected ? MeasureMode.Imperial : MeasureMode.Metric);
 
         if (result === 21) {
             this.mix = 'EANx 21 (Air)';

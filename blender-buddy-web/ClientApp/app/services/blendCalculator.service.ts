@@ -69,8 +69,8 @@ export class BlendCalculatorService {
     }
 
     public calculatePartialPressure(request: PartialPressureRequest): PartialPressureResult {
-        let ata = BlendCalculatorService.calculateAtaAbs(request.depth, request.system);
-        let result = new PartialPressureResult();
+        const ata = BlendCalculatorService.calculateAtaAbs(request.depth, request.system);
+        const result = new PartialPressureResult();
 
         result.PpO2 = (ata * request.gas.oxygen.toPercent()).round();
         result.PpN2 = (ata * request.gas.nitrogen.toPercent()).round();

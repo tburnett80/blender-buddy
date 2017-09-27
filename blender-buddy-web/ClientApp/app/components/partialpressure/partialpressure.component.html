@@ -1,37 +1,35 @@
 ﻿<div class="container top-pad-20">
     <div class="col-sm-5">
-        <div class="row">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Calculate Partial Pressure of Gases at Depth
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Calculate Partial Pressure of Gases at Depth
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" [checked]="ppImperialSelected === true" (change)="ppSystemSelectionChange(!ppImperialSelected)" name="ppmeasurement" value="true" />Imperial
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" [checked]="ppImperialSelected === false" (change)="ppSystemSelectionChange(!ppImperialSelected)" name="ppmeasurement" value="false" />Metric
+                    </label>
                 </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label class="radio-inline">
-                            <input type="radio" [checked]="imperialSelected === true" (change)="systemSelectionChange(!imperialSelected)" name="measurement" value="true" />Imperial
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" [checked]="imperialSelected === false" (change)="systemSelectionChange(!imperialSelected)" name="measurement" value="false" />Metric
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>Depth in {{measurement}}</label>
-                        <input class="form-control" [(ngModel)]="depth" (change)="updateDepth()" type="number" />
-                    </div>
-                    <div class="form-group">
-                        <gas (gasUpdated)="updateGas($event)"></gas>
-                    </div>
-                    <div class="form-group">
-                        <div class="row margin-bottom-neg-40">
-                            <div class="form-group col-sm-4">
-                                <label>PP O2: {{result.PpO2}}</label>
-                            </div>
-                            <div class="form-group col-sm-4">
-                                <label>PP He: {{result.PpHe}}</label>
-                            </div>
-                            <div class="form-group col-sm-4">
-                                <label>PP N2: {{result.PpN2}}</label>
-                            </div>
+                <div class="form-group">
+                    <label>Depth in {{ppMeasurement}}</label>
+                    <input class="form-control" [(ngModel)]="depth" (change)="ppUpdateDepth()" type="number" />
+                </div>
+                <div class="form-group">
+                    <gas (gasUpdated)="ppUpdateGas($event)"></gas>
+                </div>
+                <div class="form-group">
+                    <div class="row margin-bottom-neg-40">
+                        <div class="form-group col-sm-4">
+                            <label>PP O2: {{result.PpO2}}</label>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label>PP He: {{result.PpHe}}</label>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label>PP N2: {{result.PpN2}}</label>
                         </div>
                     </div>
                 </div>

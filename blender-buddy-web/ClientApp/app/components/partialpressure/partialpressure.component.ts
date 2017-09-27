@@ -12,8 +12,8 @@ import { PartialPressureResult } from '../../models/calculator/partialPressureRe
 })
 export class PartialPressureComponent {
     private service: BlendCalculatorService;
-    imperialSelected: boolean;
-    measurement: string;
+    ppImperialSelected: boolean;
+    ppMeasurement: string;
     depth: number;
     result: PartialPressureResult;
     gas: Gas;
@@ -28,25 +28,25 @@ export class PartialPressureComponent {
         this.gas.nitrogen = 79;
         this.gas.helium = 0;
         this.depth = 0;
-        this.systemSelectionChange(true);
+        this.ppSystemSelectionChange(true);
     }
 
-    systemSelectionChange(value: boolean): void {
-        this.imperialSelected = value;
-        this.measurement = this.imperialSelected ? 'feet' : 'meeters';
-        this.updateDepth();
+    ppSystemSelectionChange(value: boolean): void {
+        this.ppImperialSelected = value;
+        this.ppMeasurement = this.ppImperialSelected ? 'feet' : 'meeters';
+        this.ppUpdateDepth();
     }
 
-    updateGas(gas: Gas): void {
+    ppUpdateGas(gas: Gas): void {
         this.gas = gas;
         let request = new PartialPressureRequest();
         request.depth = this.depth;
         request.gas = this.gas;
-        request.system = this.imperialSelected ? MeasureMode.Imperial : MeasureMode.Metric;
+        request.system = this.ppImperialSelected ? MeasureMode.Imperial : MeasureMode.Metric;
         this.result = this.service.calculatePartialPressure(request);
     }
 
-    updateDepth(): void {
-        this.updateGas(this.gas);
+    ppUpdateDepth(): void {
+        this.ppUpdateGas(this.gas);
     }
 }
