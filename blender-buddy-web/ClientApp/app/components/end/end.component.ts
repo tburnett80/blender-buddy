@@ -32,6 +32,11 @@ export class EndComponent {
     }
 
     endUpdateHelium(): void {
+        if (this.endHeliumPercent > 100)
+            this.endHeliumPercent = 100;
+        if (this.endHeliumPercent < 0)
+            this.endHeliumPercent = 0;
+
         this.runCalculation();
     }
 

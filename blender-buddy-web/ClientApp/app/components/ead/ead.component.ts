@@ -32,6 +32,11 @@ export class EadComponent {
     }
 
     eadUpdateOxygen(): void {
+        if (this.eadOxegenPercent > 100)
+            this.eadOxegenPercent = 100;
+        if (this.eadOxegenPercent < 0)
+            this.eadOxegenPercent = 0;
+
         this.runCalculation();
     }
 
