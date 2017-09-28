@@ -13,6 +13,7 @@ export class TankComponent {
     private readonly calculatorDataService: CalculatorDataService;
     private measurePreasureSubscription: Subscription;
 
+    pressureToolTip: string;
     measurePreasure: string;
     tank: TankInfo;
 
@@ -29,9 +30,13 @@ export class TankComponent {
             this.calculatorDataService.measurePreasure.subscribe(value => this.measurePreasure = value);
 
         if (this.isResidual) {
+            this.pressureToolTip = "This is the pressure left in the tank";
+
             if (this.tank.pressure === -1)
                 this.tank.pressure = 500; 
         } else {
+            this.pressureToolTip = "This is the pressure the tank will be filled too";
+
             if (this.tank.pressure === -1)
                 this.tank.pressure = 3000; 
         }

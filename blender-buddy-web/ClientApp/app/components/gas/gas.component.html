@@ -4,15 +4,15 @@
     <div class="progress-bar n2-bar" role="progressbar" [style.width]="gas.nitrogen + '%'">N2</div>
 </div>
 <div class="row">
-    <div class="form-group col-sm-4">
+    <div class="form-group col-sm-4" data-toggle="tooltip" data-placement="bottom" title="Oxygen percent of tank">
         <label>Oxygen %</label>
         <input class="form-control o2-npt" max="100" [(ngModel)]="gas.oxygen" (change)="updatePercents()" type="number" />
     </div>
-    <div class="form-group col-sm-4">
+    <div class="form-group col-sm-4" data-toggle="tooltip" data-placement="bottom" title="Helium percent of tank">
         <label>Helium %</label>
         <input class="form-control he-npt" max="100" [(ngModel)]="gas.helium" (change)="updatePercents()" type="number" />
     </div>
-    <div class="form-group col-sm-4">
+    <div class="form-group col-sm-4" data-toggle="tooltip" data-placement="bottom" title="Nitrogen percent of tank">
         <label>Nitrogen %</label>
         <input class="form-control n2-npt" max="100" [(ngModel)]="gas.nitrogen" (change)="updatePercents()" type="number" />
     </div>

@@ -1,11 +1,12 @@
 ﻿<form>
     <div class="container top-pad-20">
-
         <div class="col-sm-5">
             <div class="row">
-                <div class="panel panel-default">
+                <div class="panel panel-default" 
+                     data-toggle="tooltip" data-placement="bottom" 
+                     title="This is the desired contents of the tank">
                     <div class="panel-heading">
-                        Desired Mix
+                        Desired Gas Blend
                     </div>
                     <div class="panel-body">
                         <tank [isResidual]="false"></tank>
@@ -13,9 +14,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="panel panel-default">
+                <div class="panel panel-default" 
+                     data-toggle="tooltip" data-placement="bottom"
+                     title="This is the gas already in the tank being filled">
                     <div class="panel-heading">
-                        Residual Mix
+                        Residual Gas
                     </div>
                     <div class="panel-body">
                         <tank [isResidual]="true"></tank>
@@ -23,9 +26,10 @@
                 </div>
             </div>
         </div>
-        
         <div class="col-sm-5">
-            <div class="panel panel-default">
+            <div class="panel panel-default" 
+                 data-toggle="tooltip" data-placement="bottom"
+                 title="Measurement system, Imperial or Metric"> 
                 <div class="panel-heading">
                     Measurement System
                 </div>
@@ -41,7 +45,9 @@
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">
+                <div class="panel-heading"
+                     data-toggle="tooltip" data-placement="bottom"
+                     title="Gas type used to fill the tank to full pressure">
                     Top Off Gas
                 </div>
                 <div class="panel-body">
@@ -55,27 +61,43 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default"
+                 data-toggle="tooltip" data-placement="bottom"
+                 title="Pressue of gasses to add to tank to achieve the desired gas blend">
                 <div class="panel-heading">
                     Mixing Pressures to Add
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <p>Oxygen<span class="pull-right">{{result.fillSpecs.gasBlend.oxygen}} {{measurePreasure}}</span></p>
-                        <p>{{selectedGasText}}<span class="pull-right">{{result.topOffGasPressure}} {{measurePreasure}}</span></p>
-                        <p>Helium<span class="pull-right">{{result.fillSpecs.gasBlend.helium}} {{measurePreasure}}</span></p>
+                        <p data-toggle="tooltip" data-placement="bottom" title="Oxygen pressure to add to tank">
+                            Oxygen<span class="pull-right">{{result.fillSpecs.gasBlend.oxygen}}&nbsp;{{measurePreasure}}</span>
+                        </p>
+                        <p data-toggle="tooltip" data-placement="bottom" title="Helium pressure to add to tank">
+                            Helium<span class="pull-right">{{result.fillSpecs.gasBlend.helium}}&nbsp;{{measurePreasure}}</span>
+                        </p>
+                        <p data-toggle="tooltip" data-placement="bottom" title="{{selectedGasText}} pressure to add to tank to top it off to full">
+                            {{selectedGasText}}<span class="pull-right">{{result.topOffGasPressure}}&nbsp;{{measurePreasure}}</span>
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default"
+                 data-toggle="tooltip" data-placement="bottom"
+                 title="Depth limits based on Oxygen percentage">
                 <div class="panel-heading">
                     Oxygen Limits
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <p>Hypoxic Depth<span class="pull-right">{{result.hypoxicDepth}} {{measureDistance}}</span></p>
-                        <p>PP O2 1.4% Depth<span class="pull-right">{{result.pO214Depth}} {{measureDistance}}</span></p>
-                        <p>PP 02 1.6% Depth<span class="pull-right">{{result.pO216Depth}} {{measureDistance}}</span></p>
+                        <p data-toggle="toggle" data-placement="bottom" title="Depth this blend becomes safe to use">
+                            Hypoxic Depth<span class="pull-right">{{result.hypoxicDepth}}&nbsp;{{measureDistance}}</span>
+                        </p>
+                        <p data-toggle="toggle" data-placement="bottom" title="Maximum depth with an Oxygen partial pressure of 1.4">
+                            PP O2 1.4% Depth<span class="pull-right">{{result.pO214Depth}}&nbsp;{{measureDistance}}</span>
+                        </p>
+                        <p data-toggle="toggle" data-placement="bottom" title="Maximum depth with an Oxygen partial pressure of 1.6">
+                            PP 02 1.6% Depth<span class="pull-right">{{result.pO216Depth}}&nbsp;{{measureDistance}}</span>
+                        </p>
                     </div>
                 </div>
             </div>
