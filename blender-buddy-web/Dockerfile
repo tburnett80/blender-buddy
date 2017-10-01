@@ -7,7 +7,7 @@ WORKDIR /app
 ENV ASPNETCORE_URLS http://*:8080
 
 #Copy the source
-COPY blender/ /app
+COPY app/ /app
 
 EXPOSE 8080
 
