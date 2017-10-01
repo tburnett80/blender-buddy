@@ -8,8 +8,7 @@ WORKDIR /app
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && apt-get install -y nodejs
 
 ENV ASPNETCORE_URLS http://*:8080
-#change this for production deployment 
-ENV ASPNETCORE_ENVIRONMENT Development
+#ENV ASPNETCORE_ENVIRONMENT Development
 
 #Copy the source
 COPY app/ /app
