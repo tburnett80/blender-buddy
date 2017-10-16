@@ -1,4 +1,4 @@
-FROM rep.timburnett.io/node-dncore/base
+FROM reg.timburnett.io/node-dncore/base
 
 WORKDIR /app
 
